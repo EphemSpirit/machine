@@ -27,6 +27,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'better_errors', '~> 2.8', '>= 2.8.3'
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'bootstrap-sass', '3.4.1'
+gem 'faker', '~> 2.14'
+gem 'will_paginate', '~> 3.3'
+gem 'rails-controller-testing'
 
 
 group :development, :test do
