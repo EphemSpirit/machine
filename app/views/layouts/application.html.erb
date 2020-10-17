@@ -11,33 +11,11 @@
   </head>
 
   <body>
-    <nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
-      <div class="flex items-center text-white uppercase mr-6">
-        The Machine
-      </div>
-      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <div class="text-md">
-          <a href="/" class="block lg:inline-block text-blue-250 hover:text-white mr-4">Home</a>
-        </div>
-        <% if !user_signed_in? %>
-          <div class="text-md">
-            <%= link_to "Log In", new_user_session_path, class: "block lg:inline-block text-blue-250 hover:text-white mr-4" %>
-          </div>
-        <% end %>
-      </div>
-      <% if user_signed_in? %>
-        <div class="float-right">
-          <%= link_to "Users", users_path %>
-          <%= link_to "My Profile", user_path(current_user), class: "px-4" %>
-          <%= link_to "My Friends", root_path, class: "px-4" %>
-          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "mx-4" %>
-        </div>
-      <% else %>
-        <div class="float-right">
-          <%= link_to "Sign Up", new_user_registration_path %>
-        </div>
-      <% end %>
-    </nav>
+    <% if user_signed_in? %>
+      <%= render 'shared/full_nav' %>
+    <% else %>
+      <%= render 'shared/base_nav' %>
+    <% end %>
     <% if flash[:notice] %>
       <p class="w-3/4 bg-red-400 mx-auto py-4 text-center">
         <%= notice %>

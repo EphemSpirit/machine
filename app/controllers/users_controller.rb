@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :not_logged_in, only: [:home]
+  before_action :be_not_logged_in, only: [:home]
 
   def home
 
@@ -15,8 +15,10 @@ class UsersController < ApplicationController
 
   private
 
-    def not_logged_in
-      !user_signed_in?
+    def be_not_logged_in
+      if user_signed_in?
+        redirect_to user_path(current_user)
+      end
     end
 
 end

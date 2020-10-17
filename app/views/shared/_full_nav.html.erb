@@ -1,0 +1,11 @@
+<nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
+  <div class="flex items-center text-white uppercase mr-6">
+    The Machine
+  </div>
+  <div class="float-right">
+    <%= link_to "Users", users_path %>
+    <%= link_to "My Profile", user_path(current_user), class: "px-4" %>
+    <%= link_to "My Friends", root_path, class: "px-4" %>
+    <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "mx-4" %>
+  </div>
+</nav>
