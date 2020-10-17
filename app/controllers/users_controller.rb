@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   before_action :be_not_logged_in, only: [:home]
+  before_action :authenticate_user!, except: [:home]
 
+  #extract this to a static pages controller at some point
   def home
 
   end
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 15)
   end
 
   def show

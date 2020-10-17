@@ -5,6 +5,10 @@
 
 <div class="container mx-auto w-full max-w-xs">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "bg-white shadow-md px-8 py-6 mb-4") do |f| %>
+    <div class="bg-red-200 font-bold">
+      <%= render "devise/shared/error_messages", resource: resource %>
+    </div>
+
     <div class="mb-4">
       <%= f.label :name, class: "block text-gray-700 text-md font-bold" %><br />
       <%= f.text_field :name, autofocus: true, class: "shadow border rounded w-full py-2 px-3 text-gray-700" %>
@@ -37,13 +41,13 @@
       </div>
     <% end %>
 
-    <div class="mb-4 items-center">
+    <div class="mb-4 ml-4 items-center">
       <button class="bg-blue-500 hover:bg-blue-700 text-white py-6 px-10 mx-16 rounded">
         <%= f.submit "Log in" %>
       </button>
     </div>
   <% end %>
-  <div class="container mx-auto">
+  <div class="container mx-auto ml-4">
     Already have an account? <%= render "devise/shared/links" %>
   </div>
 </div>

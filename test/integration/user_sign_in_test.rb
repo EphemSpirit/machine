@@ -28,7 +28,7 @@ class UserSignInTest < ActionDispatch::IntegrationTest
     assert_template 'devise/sessions/new'
     assert_not flash.empty?
   end
-  
+
   test "valid info" do
     get new_user_session_path
     assert_template 'devise/sessions/new'
