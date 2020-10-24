@@ -4,13 +4,13 @@
   <% @users.each do |user| %>
     <div class="bg-white shadow-md py-4 mt-4">
       <div>
-        <%= link_to user.name, user_path(user) %>
+        <%= user.name %>
       </div>
       <div>
         <%= user.email %>
       </div>
       <button class="text-sm bg-blue-300 rounded mt-2 px-4 py-2">
-        Add Friend
+        <%= link_to "Visit Me!", user_path(user) %>
       </button>
     </div>
   <% end %>

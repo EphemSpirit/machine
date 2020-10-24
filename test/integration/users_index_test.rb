@@ -17,7 +17,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     follow_redirect!
     first_page = User.paginate(page: 1)
     first_page.each do |user|
-      assert_select "a[href=?]", user_path(user), text: user.name
+      assert_select "a[href=?]", user_path(user), text: "Visit Me!"
     end
   end
 end

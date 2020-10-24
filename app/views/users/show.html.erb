@@ -16,6 +16,13 @@
       <button class="bg-blue-500 py-4 px-2 rounded">
         <%= link_to "Edit My Account", edit_user_registration_path %>
       </button>
+      <button class="bg-blue-500 py-4 px-2 rounded">
+        <%= link_to "Friend Requests", requests_path %>
+      </button>
+    </div>
+  <% else %>
+    <div class="ml-4 mt-4 py-4 text-center">
+      <%= button_to "Add Friend", requests_path(request: {sender_id: current_user.id, receiver_id: @user.id}), class: "bg-blue-500 py-4 px-2 rounded" %>
     </div>
   <% end %>
 </aside>
