@@ -5,9 +5,7 @@
   <div class="bg-white shadow-md px-4 py-2">
     <%= link_to request.sender.name, user_path(request.sender), class: "underline font-bold" %> sent you a friend request
     <div>
-      <button class="text-sm bg-blue-300 rounded mt-2 px-4 py-2">
-        Accept
-      </button>
+      <%= button_to "Accept", friendships_path(friendship: { friender_id: request.sender.id, friendee_id: current_user.id }), class: "text-sm bg-blue-300 rounded mt-2 px-4 py-2" %>
       <button class="text-sm bg-blue-300 rounded mt-2 px-4 py-2">
         Deny
       </button>

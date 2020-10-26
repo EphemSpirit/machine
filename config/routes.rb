@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   devise_for :users
   root 'users#home'
   resources :users
-  resources :requests, except: [:destroy, :show]
+  resources :requests
+  resources :friendships, only: [:index, :new, :create, :destroy]
 end

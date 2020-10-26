@@ -7,6 +7,8 @@ class User < ApplicationRecord
   #associations
   has_many :requests
   has_many :pending_friends, through: :requests, source: :receiver
+  has_many :friendships
+  has_many :friends, through: :friendships, source: :friendee
 
   #email regex
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

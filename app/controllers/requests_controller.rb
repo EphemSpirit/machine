@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :find_request, only: [:edit, :update, :show]
+  before_action :find_request, only: [:edit, :update, :show, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -33,6 +33,10 @@ class RequestsController < ApplicationController
 
   def update
     @request.update_columns(:status, true)
+  end
+
+  def destroy
+    @request.destroy
   end
 
   private
