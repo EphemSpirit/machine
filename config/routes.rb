@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get '/users' => 'users#index', :as => :user_root
   devise_for :users
   root 'users#home'
-  resources :users
+  resources :users do
+    resources :friendships, only: [:index, :new, :create, :destroy]
+  end
   resources :requests
-  resources :friendships, only: [:index, :new, :create, :destroy]
 end

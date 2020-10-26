@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @friendships = Friendship.where("friender_id = ? OR friendee_id = ?", current_user.id)
+    @friendships = Friendship.where("friender_id = ? OR friendee_id = ?", current_user.id, current_user.id)
   end
 
   def new
