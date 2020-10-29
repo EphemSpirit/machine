@@ -24,7 +24,11 @@ class User < ApplicationRecord
   end
 
   def num_requests
-    Request.where("receiver_id = ?", self.id).size
+    Request.where("receiver_id = ? AND accepted = ?", self.id, nil).size
+  end
+
+  def is_friend?
+    Friendship.where("friender_id = ? OR friendee_id = ?", self.id, self.id).any?
   end
 
 end

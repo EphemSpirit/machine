@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @requests = Request.where("receiver_id = ?", current_user.id)
+    @requests = Request.where("receiver_id = ? AND accepted = ?", current_user.id, nil)
   end
 
   def new
@@ -32,7 +32,10 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @request.update_columns(:status, true)
+    #need to move the updated request OUT of the current_user's requests
+    @request.update_columns(accepted: false)
+    redirect_to user_path(current_user)
+    flash[:notice] = "Friendship Denied"
   end
 
   def destroy

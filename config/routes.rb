@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   root 'users#home'
   resources :users do
     resources :friendships, only: [:index, :new, :create, :destroy]
+    resources :requests
   end
-  resources :requests
 end

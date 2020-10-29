@@ -12,14 +12,17 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(friendship_params)
 
-    if @friendship.save
+    if Friendship.all.any?{ |x| x.friender_id == @friendship.friender_id || x.friendee_id == @friendship.friendee_id }
+      redirect_to root_url
+      flash[:notice] = "You're Already Friends With This Person"
+    elsif @friendship.save
       @req = Request.where("sender_id = ? AND receiver_id = ?", @friendship.friender_id, @friendship.friendee_id)
-      @req.destroy(@req.ids.first)
+      @req.update(accepted: true)
       redirect_to user_path(current_user)
       flash[:notice] = "Friend Accepted!"
     else
       redirect_to 'requests#index'
-      flash[:notice] = "Soemthing Went Wrong :("
+      flash[:notice] = "Something Went Wrong :("
     end
   end
 

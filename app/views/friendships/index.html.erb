@@ -1,0 +1,19 @@
+<%= render 'shared/user_info' %>
+
+<div class="container mx-auto text-centermb-4 w-2/5 py-4">
+  <h1 class="text-center font-bold underline">Your Friends</h1>
+  <% @friendships.each do |friendship| %>
+  <div class="bg-white shadow-md px-4 py-2 text-center h-24">
+    <aside class="border border-black float-left h-full text-center content-center">
+      Profile pic
+    </aside>
+    <%= link_to "#{friendship.friender.name}", user_path(friendship.friender), class: "float-left pl-4 pt-6 font-bold" %>
+    <div class="mx-auto text-center">
+      <%= button_to "Delete", user_friendship_path(current_user.id, friendship.id), method: :delete, data: { confirm: "Are you sure?" } %>
+    </div>
+    <div class="text-center w-1/2 mx-auto pt-6">
+      View their posts
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -6,11 +6,16 @@
     <%= link_to request.sender.name, user_path(request.sender), class: "underline font-bold" %> sent you a friend request
     <div>
       <button>
-        <%= button_to "Accept", user_friendships_path(friendship: { friender_id: request.sender.id, friendee_id: current_user.id }), class: "text-sm bg-blue-300 rounded mt-2 px-4 py-2" %>
+        <%= button_to "Accept", user_friendships_path(user_id: current_user.id,
+                                                      friendship: { friender_id: request.sender.id, friendee_id: current_user.id }),
+                                                      class: "text-sm bg-blue-300 rounded mt-2 px-4 py-2" %>
       </button>
-      <button class="text-sm bg-blue-300 rounded mt-2 px-4 py-2">
-        Deny
-      </button>
+      <div>
+        <button>
+          <%= button_to "Deny", user_request_path(current_user.id, request), method: :patch,
+                                                                             class: "text-sm bg-blue-300 rounded mt-2 px-4 py-2" %>
+        </button>
+      </div>
     </div>
   </div>
   <% end %>

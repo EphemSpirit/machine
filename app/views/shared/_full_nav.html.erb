@@ -5,7 +5,7 @@
   <div class="float-right">
     <%= link_to "Users", users_path %>
     <%= link_to "My Profile", user_path(current_user), class: "px-4" %>
-    <%= link_to "My Friends (#{current_user.num_requests > 0 ? current_user.num_requests : nil})", root_path, class: "px-4" %>
+    <%= link_to "My Friends (#{current_user.friends.size})", user_friendships_path(current_user.id), class: "px-4" %>
     <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "mx-4" %>
   </div>
 </nav>

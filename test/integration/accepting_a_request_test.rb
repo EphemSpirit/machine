@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FriendshipsControllerTest < ActionDispatch::IntegrationTest
+class AcceptingARequestTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = User.create(name: "Dio",
@@ -15,4 +15,10 @@ class FriendshipsControllerTest < ActionDispatch::IntegrationTest
                         password_confirmation: "password")
   end
 
+  test "updates columns when a request is accepted" do
+    post user_requests_path(@user.id, request: { sender: @user, receiver: @friendo })
+    assert_equal 0, Request.where(accepted: true).size
+    post user_friendships_path(@user.id, friendship: { friender_id: @user.id, friendee_id: @friendo.id })
+    assert_equal 1, Request.where(accepted: true).size
+  end
 end
