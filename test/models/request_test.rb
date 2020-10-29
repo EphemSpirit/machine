@@ -42,7 +42,7 @@ class RequestTest < ActiveSupport::TestCase
     req.save
     assert_no_difference 'Request.count' do
       new_req = @user.requests.build(sender: @user, receiver: @friendo)
-      req.save
+      new_req.save
     end
   end
 

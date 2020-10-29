@@ -4,15 +4,15 @@
   <h1 class="text-center font-bold underline">Your Friends</h1>
   <% @friendships.each do |friendship| %>
   <div class="bg-white shadow-md px-4 py-2 text-center h-24">
-    <aside class="border border-black float-left h-full text-center content-center">
+    <aside class="h-full border border-black float-left text-center">
       Profile pic
     </aside>
-    <%= link_to "#{friendship.friender.name}", user_path(friendship.friender), class: "float-left pl-4 pt-6 font-bold" %>
-    <div class="mx-auto text-center">
-      <%= button_to "Delete", user_friendship_path(current_user.id, friendship.id), method: :delete, data: { confirm: "Are you sure?" } %>
+    <div class="pt-4 pr-16 font-bold underline">
+      <%= "#{friendship.friender.name}" %>
     </div>
-    <div class="text-center w-1/2 mx-auto pt-6">
-      View their posts
+    <div class="pt-2 pr-20">
+      <%= link_to "View Their Posts", user_path(friendship.friender) %> |
+      <%= link_to "Delete Friend", user_friendships_path(friendship.friender.id), method: :delete, data: { confirm: "Are You Sure?" } %>
     </div>
   </div>
   <% end %>
