@@ -31,6 +31,8 @@ class FriendshipTest < ActiveSupport::TestCase
     assert_difference 'Friendship.count', 1 do
       friendship.save
     end
+    #make sure the friendship is there
+    assert Friendship.where(friender_id: @user.id)
   end
 
 

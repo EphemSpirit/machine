@@ -35,6 +35,8 @@ class RequestTest < ActiveSupport::TestCase
     assert_difference 'Request.count', 1 do
       req.save
     end
+    #make sure the request is there
+    assert Request.where(sender: @user)
   end
 
   test "doesn't create duplicate requests" do

@@ -8,11 +8,16 @@
       Profile pic
     </aside>
     <div class="pt-4 pr-16 font-bold underline">
-      <%= "#{friendship.friender.name}" %>
+      <% if friendship.friender.name == current_user.name %>
+        <%= "#{friendship.friendee.name}" %>
+      <% else %>
+        <%= "#{friendship.friender.name}" %>
+      <% end %>
     </div>
     <div class="pt-2 pr-20">
-      <%= link_to "View Their Posts", user_path(friendship.friender) %> |
-      <%= link_to "Delete Friend", user_friendships_path(friendship.friender.id), method: :delete, data: { confirm: "Are You Sure?" } %>
+      <%= link_to "View Their Posts", user_path(is_friendee?(friendship, current_user) ? friendship.friender : friendship.friendee) %> |
+      <%= link_to "Delete Friend", user_friendships_path(is_friendee?(friendship, current_user) ? friendship.friender.id : friendship.friendee.id),
+                                   method: :delete, data: { confirm: "Are You Sure?" } %>
     </div>
   </div>
   <% end %>
