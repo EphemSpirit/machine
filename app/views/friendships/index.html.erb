@@ -8,7 +8,7 @@
       Profile pic
     </aside>
     <div class="pt-4 pr-16 font-bold underline">
-      <% if friendship.friender.name == current_user.name %>
+      <% if is_friender?(friendship, current_user) %>
         <%= "#{friendship.friendee.name}" %>
       <% else %>
         <%= "#{friendship.friender.name}" %>

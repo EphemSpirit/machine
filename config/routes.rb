@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     resources :friendships, only: [:index, :new, :create, :destroy]
     resources :requests
   end
+  resource :profile
 end
