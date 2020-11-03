@@ -9,6 +9,6 @@
     <div><%= current_user.username %></div>
   </div>
   <div class="bg-gray-400 ml-4 mt-4 py-4 text-center">
-    friends: # of friends
+    friends: <%= "#{total_friends(current_user)}" %>
   </div>
 </aside>

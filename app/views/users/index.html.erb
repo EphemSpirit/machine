@@ -9,7 +9,7 @@
       <div>
         <%= user.email %>
       </div>
-      <% unless is_friend?(current_user, user) || has_pending?(user) %>
+      <% unless !(is_friend?(current_user, user) || has_pending?(user)) %>
         <button class="text-sm bg-blue-300 rounded mt-2 px-4 py-2">
           <%= link_to "Visit Me!", user_path(user) %>
         </button>

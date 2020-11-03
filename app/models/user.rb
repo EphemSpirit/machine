@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #callbacks
+  after_create :build_profile
+
   #associations
   has_many :requests
   has_many :pending_friends, through: :requests, source: :receiver
@@ -28,6 +31,11 @@ class User < ApplicationRecord
 
   def is_friend?
     Friendship.where("friender_id = ? OR friendee_id = ?", self.id, self.id).any?
+  end
+
+  def build_profile
+    Profile.create(user_id: self.id)
+    render 'profile#edit'
   end
 
 end

@@ -9,18 +9,9 @@
     <div><%= @user.username %></div>
   </div>
   <div class="bg-gray-400 ml-4 mt-4 py-4 text-center">
-    friends: # of friends
+    friends: <%= "#{total_friends(@user)}" %>
   </div>
-  <% if @user == current_user %>
-    <div class="ml-4 mt-4 py-4 text-center">
-      <button class="bg-blue-500 py-4 px-2 rounded">
-        <%= link_to "Edit My Account", edit_user_registration_path %>
-      </button>
-      <button class="bg-blue-500 py-4 px-2 rounded">
-        <%= link_to "Friend Requests: #{current_user.num_requests > 0 ? current_user.num_requests : 0}", user_requests_path(current_user.id) %>
-      </button>
-    </div>
-  <% elsif is_friend?(current_user, @user) %>
+  <% if is_friend?(current_user, @user) %>
     <div class="ml-4 mt-4 py-4 text-center">
       We're Friends for Life!
     </div>
