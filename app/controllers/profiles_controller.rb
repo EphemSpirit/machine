@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :find_profile, only: [:show, :edit, :destroy]
+  before_action :find_profile, only: [:show, :edit, :update, :destroy]
 
   def new
     @profile = current_user.profile.build
@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = current_user.profile.build(profile_params)
+    @profile.image.attach(params[:profile][:profile_pic])
 
     if @profile.save
       redirect_to root_url
@@ -22,6 +23,12 @@ class ProfilesController < ApplicationController
   def edit
   end
 
+  def update
+    @profile.update(profile_params)
+    flash[:notice] = "Profile Info Updated!"
+    redirect_to root_url
+  end
+
   def destroy
     @profile.destroy
     flash[:notice] = "Account Deactivated"
@@ -31,7 +38,7 @@ class ProfilesController < ApplicationController
   private
 
     def profile_params
-      params.require(:profile).permit(:user_id)
+      params.require(:profile).permit(:user_id, :bio, :birthday, :profile_pic)
     end
 
     def find_profile

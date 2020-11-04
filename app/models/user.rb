@@ -20,7 +20,6 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   #validations
-  validates :name, presence: true
   validates :email, presence: true, format: { with: EMAIL_REGEX }
   validates :username, presence: true, length: { in: 6..20 }
   validates :username, uniqueness: true
@@ -35,7 +34,6 @@ class User < ApplicationRecord
 
   def build_profile
     Profile.create(user_id: self.id)
-    render 'profile#edit'
   end
 
 end

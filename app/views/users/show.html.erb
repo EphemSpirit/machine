@@ -1,26 +1,4 @@
-<aside class="float-left">
-  <div class="h-1/4 bg-gray-300 ml-4 mt-6 py-20 px-24">
-    <div class="float-left">
-      User Photo
-    </div>
-  </div>
-  <div class="bg-gray-400 ml-4 mt-4 py-8 text-center">
-    <div><%= @user.name %></div>
-    <div><%= @user.username %></div>
-  </div>
-  <div class="bg-gray-400 ml-4 mt-4 py-4 text-center">
-    friends: <%= "#{total_friends(@user)}" %>
-  </div>
-  <% if is_friend?(current_user, @user) %>
-    <div class="ml-4 mt-4 py-4 text-center">
-      We're Friends for Life!
-    </div>
-  <% else %>
-    <div class="ml-4 mt-4 py-4 text-center">
-      <%= button_to "Add Friend", user_requests_path(user_id: current_user.id, request: {sender_id: current_user.id, receiver_id: @user.id}), class: "bg-blue-500 py-4 px-2 rounded" %>
-    </div>
-  <% end %>
-</aside>
+<%= render 'shared/user_info' %>
 
 <div class="container mx-auto text-center mb-4 w-2/5 py-4">
   This will house your own posts one day!

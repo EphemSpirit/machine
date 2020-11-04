@@ -1,0 +1,17 @@
+<aside class="float-left">
+  <%= image_tag current_user.profile.display_image, class: "rounded-full items-center justify-center w-32 h-32 mx-20 my-6" %>
+  <div class="bg-gray-400 ml-4 mt-4 py-8 text-center rounded-full">
+    <div><%= current_user.profile.bio %></div>
+  </div>
+  <div class="bg-gray-400 ml-4 mt-4 py-4 text-center">
+    <%= link_to "Friends:", user_friendships_path(current_user) %> <%= "#{total_friends(current_user)} total" %>
+  </div>
+  <div class="ml-4 mt-4 py-4 text-center">
+    <button class="bg-blue-500 py-4 px-2 rounded">
+      <%= link_to "Edit My Account", edit_user_registration_path(current_user.id) %>
+    </button>
+    <button class="bg-blue-500 py-4 px-2 rounded">
+      <%= link_to "Edit My Profile", edit_user_profile_path(current_user.id) %>
+    </button>
+  </div>
+</aside>

@@ -1,29 +1,14 @@
-<aside class="float-left">
-  <div class="h-1/4 bg-gray-300 ml-4 mt-6 py-20 px-24">
-    <div class="float-left">
-      User Photo
-    </div>
-  </div>
-  <div class="bg-gray-400 ml-4 mt-4 py-8 text-center">
-    <div><%= current_user.name %></div>
-    <div><%= current_user.username %></div>
-  </div>
-  <div class="bg-gray-400 ml-4 mt-4 py-4 text-center">
-    friends: # of friends
-  </div>
-  <div class="ml-4 mt-4 py-4 text-center">
-    <button class="bg-blue-500 py-4 px-2 rounded">
-      <%= link_to "Edit My Account", edit_user_registration_path %>
-    </button>
-    <button class="bg-blue-500 py-4 px-2 rounded">
-      <%= link_to "Friend Requests: #{current_user.num_requests > 0 ? current_user.num_requests : 0}", user_requests_path(current_user.id) %>
-    </button>
-  </div>
-</aside>
+<% if @profile.owner == current_user %>
+  <%= render 'shared/current_user_info' %>
+<% else %>
+  <%= render 'shared/user_info' %>
+<% end %>
 
-<div class="container mx-auto text-center mb-4 w-2/5 py-4 border border-black">
-  This will be a post form eventually...
-</div>
+<% if profile_owner?(@profile) %>
+  <div class="container mx-auto text-center mb-4 w-2/5 py-4 border border-black">
+    This will be a post form eventually...
+  </div>
+<% end %>
 
 <div class="container mx-auto text-center mb-4 w-2/5 py-4">
   This will house your own posts one day!
