@@ -23,6 +23,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: EMAIL_REGEX }
   validates :username, presence: true, length: { in: 6..20 }
   validates :username, uniqueness: true
+  validates :name, presence: true
 
   def num_requests
     Request.where("receiver_id = ? AND accepted = ?", self.id, nil).size

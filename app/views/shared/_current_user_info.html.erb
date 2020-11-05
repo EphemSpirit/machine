@@ -1,5 +1,7 @@
 <aside class="float-left">
-  <%= image_tag current_user.profile.display_image, class: "rounded-full items-center justify-center w-32 h-32 mx-20 my-6" %>
+  <% if current_user.profile.profile_pic.attached? %>
+    <%= image_tag current_user.profile.display_image, class: "rounded-full items-center justify-center w-32 h-32 mx-20 my-6" %>
+  <% end %>
   <div class="bg-gray-400 ml-4 mt-4 py-8 text-center rounded-full">
     <div><%= current_user.profile.bio %></div>
   </div>

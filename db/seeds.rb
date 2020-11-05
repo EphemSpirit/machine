@@ -10,9 +10,10 @@
                password_confirmation: 'password')
 end
 
-User.all.each do |user|
+@users = User.all
+
+@users.each do |user|
   user.profile.profile_pic = Faker::Fillmurray.image
   user.profile.bio = Faker::TvShows::AquaTeenHungerForce.quote
   user.profile.birthday = Faker::Date.birthday(min_age: 18, max_age: 50)
-  user.profile.save!
 end
