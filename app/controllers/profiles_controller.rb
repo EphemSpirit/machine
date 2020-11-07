@@ -24,9 +24,12 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile.update(profile_params)
-    flash[:notice] = "Profile Info Updated!"
-    redirect_to root_url
+    if @profile.update(profile_params)
+      flash[:notice] = "Profile Info Updated!"
+      redirect_to root_url
+    else
+      render :edit
+    end
   end
 
   def destroy

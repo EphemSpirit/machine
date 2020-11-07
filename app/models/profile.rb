@@ -12,4 +12,9 @@ class Profile < ApplicationRecord
     profile_pic.variant(resize_to_limit: [200, 200])
   end
 
+  #profile feed
+  def feed
+    @feed_posts = all_friends(self.owner)
+  end
+
 end

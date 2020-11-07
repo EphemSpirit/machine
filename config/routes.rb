@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     resources :requests
     resource :profile
   end
+  resources :posts, only: [:new, :create, :destroy]
+
 end

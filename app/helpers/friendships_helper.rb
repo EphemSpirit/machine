@@ -12,4 +12,8 @@ module FriendshipsHelper
     user.friends.all.size + user.inverse_friends.all.size
   end
 
+  def all_friends(user)
+    user.friends + user.inverse_friends
+  end
+
 end

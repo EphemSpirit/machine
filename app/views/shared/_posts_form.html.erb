@@ -1,0 +1,7 @@
+<%= form_with(model: @post, url: posts_path, local: true) do |f| %>
+  <%= f.label :body, "Content" %>
+  <%= f.text_area :body, placeholder: "Write something here..." %>
+  <%= f.label :post_img, "Add an Image" %>
+  <%= f.file_field :post_img %>
+  <%= f.submit "Post" %>
+<% end %>
