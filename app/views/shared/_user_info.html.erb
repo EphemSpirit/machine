@@ -1,14 +1,11 @@
-<aside class="float-left">
-  <div class="h-1/4 bg-gray-300 ml-4 mt-6 py-20 px-24">
-    <div class="float-left">
-      User Photo
-    </div>
+<aside class="float-left m-auto w-4/12">
+  <% if @user.profile.profile_pic.attached? %>
+    <%= image_tag @user.profile.display_image, class: "rounded-full items-center justify-center w-32 h-32 m-auto my-4" %>
+  <% end %>
+  <div class="w-2/5 bg-gray-400 m-auto py-8 px-4 text-center rounded-full items-center justify-center mb-4">
+    <%= @user.profile.bio %>
   </div>
-  <div class="bg-gray-400 ml-4 mt-4 py-8 text-center">
-    <div><%= current_user.name %></div>
-    <div><%= current_user.username %></div>
-  </div>
-  <div class="bg-gray-400 ml-4 mt-4 py-4 text-center">
-    friends: # of friends
+  <div class="bg-gray-400 m-auto py-4 text-center w-2/5 mb-4">
+    <%= link_to "Friends:", user_friendships_path(@user.id) %> <%= "#{total_friends(current_user)} total" %>
   </div>
 </aside>

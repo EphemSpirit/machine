@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #callbacks
+  after_create :build_profile
+
   #associations
   has_many :requests
   has_many :pending_friends, through: :requests, source: :receiver
@@ -17,10 +20,10 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   #validations
-  validates :name, presence: true
   validates :email, presence: true, format: { with: EMAIL_REGEX }
   validates :username, presence: true, length: { in: 6..20 }
   validates :username, uniqueness: true
+  validates :name, presence: true
 
   def num_requests
     Request.where("receiver_id = ? AND accepted = ?", self.id, nil).size
@@ -28,6 +31,10 @@ class User < ApplicationRecord
 
   def is_friend?
     Friendship.where("friender_id = ? OR friendee_id = ?", self.id, self.id).any?
+  end
+
+  def build_profile
+    Profile.create(user_id: self.id)
   end
 
 end

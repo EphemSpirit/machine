@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :users do
     resources :friendships, only: [:index, :new, :create, :destroy]
     resources :requests
+    resource :profile
   end
-  resource :profile
 end

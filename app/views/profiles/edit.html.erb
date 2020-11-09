@@ -1,0 +1,20 @@
+<div class="container mx-auto border border-black text-center w-1/4 mt-12 pt-4 px-4">
+  <h2 class="uppercase font-bold underline">Build Your Profile!</h2>
+  <%= form_with(model: @profile, url: user_profile_path(current_user.id), method: :put, local: true) do |f| %>
+    <div class="mb-4">
+      <%= f.label :profile_pic, class: "block text-gray-700 text-md font-bold" %><br />
+      <%= f.file_field :profile_pic, class: "shadow border rounded w-full py-2 px-3 text-gray-700" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :bio, class: "block text-gray-700 text-md font-bold" %>
+      <%= f.text_area :bio, placeholder: "250 characters or less", class: "shadow border border-rounded w-full py-2 px-3 text-gray-700" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :birthday, class: "block text-gray-700 text-md font-bold" %>
+      <%= f.date_field :birthday, class: "shadow border border-rounded w-1/2 py-2 px-3 text-gray-700" %>
+    </div>
+    <div class="mb-4">
+      <%= f.submit "Update Profile", class: "bg-blue-500 hover:bg-blue-700 text-white py-6 px-10 mx-16 rounded" %>
+    </div>
+  <% end %>
+</div>

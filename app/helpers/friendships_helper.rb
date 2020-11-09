@@ -8,4 +8,8 @@ module FriendshipsHelper
     friendship.friender.name == user.name
   end
 
+  def total_friends(user)
+    user.friends.all.size + user.inverse_friends.all.size
+  end
+
 end

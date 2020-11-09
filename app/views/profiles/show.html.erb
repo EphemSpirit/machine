@@ -1,0 +1,15 @@
+<% if @profile.owner == current_user %>
+  <%= render 'shared/current_user_info' %>
+<% else %>
+  <%= render 'shared/user_info' %>
+<% end %>
+
+<% if profile_owner?(@profile) %>
+  <div class="container mx-auto text-center mb-4 w-2/5 py-4 border border-black h-48">
+    This will be a post form eventually...
+  </div>
+<% end %>
+
+<div class="container mx-auto text-center mb-4 w-2/5 py-4">
+  This will house your own posts one day!
+</div>
