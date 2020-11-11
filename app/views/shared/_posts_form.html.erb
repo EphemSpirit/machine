@@ -1,7 +1,16 @@
-<%= form_with(model: @post, url: posts_path, local: true) do |f| %>
-  <%= f.label :body, "Content" %>
-  <%= f.text_area :body, placeholder: "Write something here..." %>
-  <%= f.label :post_img, "Add an Image" %>
-  <%= f.file_field :post_img %>
-  <%= f.submit "Post" %>
-<% end %>
+<div class="items-center justify-center pt-6">
+  <%= form_with(model: @post, url: posts_path, local: true) do |f| %>
+    <div class="mb-4">
+      <%= f.label :body, "Make a New Post!" %>
+    </div>
+    <div class="items-center"
+      <div class="border border-black mb-4 pl-12">
+        <%= f.text_area :body, placeholder: "Write something here...", size: "54x10", class: "border border-black" %>
+      </div>
+    </div>
+    <div class="mb-4"
+      <%= f.label :post_img, "Add an Image:" %>
+      <%= f.file_field :post_img %>
+      <%= f.submit "Post", class: "bg-blue-500 px-4 py-2 rounded-full" %>
+  <% end %>
+</div>

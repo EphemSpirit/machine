@@ -8,4 +8,8 @@ module UsersHelper
     Request.where("sender_id = ? OR receiver_id = ? AND accepted = ?", user.id, user.id, nil)
   end
 
+  def all_friends(user)
+    user.friends | user.ivnerse_friends.map(&:friender)
+  end
+
 end

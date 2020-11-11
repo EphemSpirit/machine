@@ -30,12 +30,15 @@ class User < ApplicationRecord
     Request.where("receiver_id = ? AND accepted = ?", self.id, nil).size
   end
 
-  def is_friend?
-    Friendship.where("friender_id = ? OR friendee_id = ?", self.id, self.id).any?
+  def feed_posts
+    user_friends = self.friends.pluck(:id) + self.inverse_friends.map(&:friender).pluck(:id)
+    Post.where("author IN #{user_friends} OR author = ?", self)
   end
 
-  def build_profile
-    Profile.create(user_id: self.id)
-  end
+  private
+
+    def build_profile
+      Profile.create(user_id: self.id)
+    end
 
 end

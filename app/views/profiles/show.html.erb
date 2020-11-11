@@ -5,11 +5,24 @@
 <% end %>
 
 <% if profile_owner?(@profile) %>
-  <div class="container mx-auto text-center mb-4 w-2/5 py-4 border border-black h-48">
-    <%= render 'shared/posts_form' %>
-  </div>
+  <%= render 'shared/posts_form' %>
 <% end %>
 
 <div class="container mx-auto text-center mb-4 w-2/5 py-4">
-  This will house your own posts one day!
+  <h2 class="underline font-bold pb-4">Your Feed</h2>
+  <% @profile.owner.posts.each do |post| %>
+    <div class="bg-white shadow-md px-8 py-6 mb-4">
+      <div class="mb-4">
+        <%= post.body %>
+      </div>
+      <% if post.post_img.attached? %>
+        <div class="mb-4">
+          <%= image_tag post.display_post_image, class: "pl-40" %>
+        </div>
+      <% end %>
+      <div class="mb-4">
+        <%= link_to post.author.name, user_path(post.author.id) %>
+      </div>
+    </div>
+  <% end %>
 </div>

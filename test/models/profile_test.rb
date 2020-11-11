@@ -25,7 +25,7 @@ class ProfileTest < ActiveSupport::TestCase
 
   test "profile bio should not be more than 250 characters" do
     @user.save
-    @user.profile.bio = "a" * 251
+    @user.profile.bio = "a" * 51
     assert_not @user.profile.valid?
   end
 

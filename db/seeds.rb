@@ -17,7 +17,7 @@ end
 @users.each do |user|
   image = open(Faker::Fillmurray.image)
   user.profile.profile_pic.attach(io: image, filename: "profilepic.jpg")
-  user.profile.bio = Faker::TvShows::AquaTeenHungerForce.quote
+  user.profile.bio = Faker::Lorem.sentence(word_count: 5)
   user.profile.birthday = Faker::Date.birthday(min_age: 18, max_age: 50)
   user.profile.save
 end

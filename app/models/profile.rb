@@ -3,7 +3,7 @@ class Profile < ApplicationRecord
   has_one_attached :profile_pic
 
   #validations
-  validates :bio, length: { maximum: 250 }
+  validates :bio, length: { maximum: 50 }
   validates :profile_pic, content_type: { in: %w[image/jpeg image/png] },
                           size: { less_than: 5.megabytes }
 
