@@ -9,7 +9,7 @@ module UsersHelper
   end
 
   def all_friends(user)
-    user.friends | user.ivnerse_friends.map(&:friender)
+    user.friends | user.inverse_friends.map(&:friender)
   end
 
 end

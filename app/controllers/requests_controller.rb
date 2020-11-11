@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @requests = Request.where("receiver_id = ? AND accepted = ?", current_user.id, nil)
+    @requests = Request.where("receiver_id = ? AND accepted IS NULL", current_user.id)
   end
 
   def new

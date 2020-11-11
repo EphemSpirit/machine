@@ -7,11 +7,9 @@
   </div>
   <div class="bg-gray-400 m-auto py-4 text-center w-2/5 mb-4">
     <%= link_to "Friends:", user_friendships_path(current_user) %> <%= "#{total_friends(current_user)} total" %>
-    <% if current_user.num_requests > 0 %>
-      <div>
-        <%= link_to "#{current_user.num_requests} Pending", user_requests_path(current_user.id) %>
-      </div>
-    <% end %>
+    <div>
+      <%= link_to "Friend Requests", user_requests_path(current_user.id) %>
+    </div>
   </div>
   <div class="m-auto py-4 px-2 text-center">
     <button class="bg-blue-500 py-4 px-2 rounded">

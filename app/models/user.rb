@@ -27,7 +27,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def num_requests
-    Request.where("receiver_id = ? AND accepted = ?", self.id, nil).size
+    Request.where("receiver_id = ? AND accepted IS NULL", self.id).size
   end
 
   def feed_posts
