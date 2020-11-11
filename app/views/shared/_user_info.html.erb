@@ -8,4 +8,9 @@
   <div class="bg-gray-400 m-auto py-4 text-center w-2/5 mb-4">
     <%= link_to "Friends:", user_friendships_path(@user.id) %> <%= "#{total_friends(current_user)} total" %>
   </div>
+  <% if !is_friend?(current_user, @user) %>
+    <div class="m-auto py-4 px-2 text-center">
+      <%= button_to "Send Friend Request", user_requests_path(user_id: current_user.id, request: { sender_id: current_user.id, receiver_id: @user.id }), class: "bg-blue-500 py-4 px-2 rounded" %>
+    </div>
+  <% end %>
 </aside>
