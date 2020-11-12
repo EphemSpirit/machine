@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
   def feed_posts
     user_friends = self.friends.pluck(:id) + self.inverse_friends.map(&:friender).pluck(:id)
-    Post.where("author IN #{user_friends} OR author = ?", self)
+    Post.where(author: [user_friends]).or(Post.where(author: self))
   end
 
   private

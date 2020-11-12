@@ -10,7 +10,7 @@
 
 <div class="container mx-auto text-center mb-4 w-2/5 py-4">
   <h2 class="underline font-bold pb-4">Your Feed</h2>
-  <% @profile.owner.posts.each do |post| %>
+  <% @profile.owner.feed_posts.each do |post| %>
     <div class="bg-white shadow-md px-8 py-6 mb-4">
       <div class="mb-4">
         <%= post.body %>

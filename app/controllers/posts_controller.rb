@@ -11,8 +11,8 @@ class PostsController < ApplicationController
       flash[:notice] = "Posted Successfully"
       redirect_to user_profile_path(current_user.id)
     else
-      flash[:notice] = "Something went wrong, pelase try again"
-      render :new
+      flash[:notice] = "Something went wrong: #{@post.errors.full_messages}"
+      redirect_to user_profile_path(current_user)
     end
   end
 
