@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships, source: :friendee
   has_many :inverse_friends, class_name: "Friendship", foreign_key: :friendee_id
   has_one :profile
-  has_many :posts
+  has_many :posts, foreign_key: :author_id
 
   #email regex
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
