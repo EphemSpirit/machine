@@ -1,17 +1,17 @@
 <% if @profile.owner == current_user %>
   <%= render 'shared/current_user_info' %>
+  <%= render 'shared/posts_form' %>
 <% else %>
   <%= render 'shared/user_info' %>
-<% end %>
-
-<% if profile_owner?(@profile) %>
-  <%= render 'shared/posts_form' %>
 <% end %>
 
 <div class="container mx-auto text-center mb-4 w-2/5 py-4">
   <h2 class="underline font-bold pb-4">Your Feed</h2>
   <% @profile.owner.feed_posts.each do |post| %>
     <div class="bg-white shadow-md px-8 py-6 mb-4">
+      <div class="mb-4 underline font-bold">
+        <%= link_to post.author.name, user_path(post.author.id) %>
+      </div>
       <div class="mb-4">
         <%= post.body %>
       </div>
@@ -20,8 +20,9 @@
           <%= image_tag post.display_post_image, class: "pl-40" %>
         </div>
       <% end %>
-      <div class="mb-4">
-        <%= link_to post.author.name, user_path(post.author.id) %>
+      <div>
+        Comment
+        <%= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), method: :post %>
       </div>
     </div>
   <% end %>
