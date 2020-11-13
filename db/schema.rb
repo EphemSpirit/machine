@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_205602) do
+ActiveRecord::Schema.define(version: 2020_11_13_213613) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 2020_11_12_205602) do
     t.index ["friendee_id"], name: "index_friendships_on_friendee_id"
     t.index ["friender_id"], name: "index_friendships_on_friender_id"
     t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "likings", force: :cascade do |t|
+    t.integer "liker_id"
+    t.integer "liked_post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
