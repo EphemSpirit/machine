@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :user_is_author?, only: [:destroy]
 
   def new
     @post = current_user.posts.build
@@ -17,16 +18,20 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = "Post deleted"
-    redirect_to user_profile_path(current_user.id)
+    redirect_to user_path(current_user.id)
   end
 
   private
 
     def post_params
       params.require(:post).permit(:author_id, :body, :post_img)
+    end
+
+    def user_is_author?
+      @post = Post.find(params[:id])
+      @post.author == current_user
     end
 
 end

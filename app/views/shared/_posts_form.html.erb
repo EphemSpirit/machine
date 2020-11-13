@@ -3,12 +3,12 @@
     <div class="mb-4">
       <%= f.label :body, "Make a New Post!" %>
     </div>
-    <div class="items-center"
-      <div class="border border-black mb-4 pl-12">
+    <div class="items-center">
+      <div class="mb-4 pl-12">
         <%= f.text_area :body, placeholder: "Write something here...", size: "54x10", class: "border border-black" %>
       </div>
     </div>
-    <div class="mb-4"
+    <div class="mb-4">
       <%= f.label :post_img, "Add an Image:" %>
       <%= f.file_field :post_img %>
       <%= f.submit "Post", class: "bg-blue-500 px-4 py-2 rounded-full" %>

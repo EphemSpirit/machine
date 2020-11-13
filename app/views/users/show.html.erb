@@ -1,5 +1,22 @@
 <%= render 'shared/user_info' %>
 
 <div class="container mx-auto text-center mb-4 w-2/5 py-4">
-  This will house your own posts one day!
+  <h2 class="underline font-bold pb-4"><%= "#{@user.name}'s" %> Posts</h2>
+  <% @user.posts.each do |post| %>
+    <div class="bg-white shadow-md px-8 py-6 mb-4">
+      <div class="mb-4">
+        <%= post.body %>
+      </div>
+      <% if post.post_img.attached? %>
+        <div class="mb-4">
+          <%= image_tag post.display_post_image, class: "pl-40" %>
+        </div>
+      <% end %>
+      <% if current_user == post.author %>
+        <div>
+          <%= link_to "Delete", post_path(post.id), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class: "underline" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
