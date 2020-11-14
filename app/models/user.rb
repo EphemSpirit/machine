@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :likings, foreign_key: :liker_id
   has_many :liked_posts, through: :likings, source: :liker
+  has_many :comments, foreign_key: :commenter_id
 
   #email regex
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
