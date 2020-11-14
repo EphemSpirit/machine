@@ -6,7 +6,7 @@
     <%= current_user.profile.bio %>
   </div>
   <div class="bg-gray-400 m-auto py-4 text-center w-2/5 mb-4">
-    <%= link_to "Friends:", user_friendships_path(current_user) %> <%= "#{total_friends(current_user)} total" %>
+    <%= link_to "My Posts", user_path(current_user), class: "font-bold underline" %>
     <div>
       <%= link_to "Friend Requests", user_requests_path(current_user.id) %>
     </div>
