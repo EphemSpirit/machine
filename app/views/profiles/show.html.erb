@@ -22,7 +22,14 @@
       <% end %>
       <div>
         Comment
-        <%= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), method: :post %>
+        <% if post.has_liked?(current_user) %>
+          Like
+        <% else %>
+          <%= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), method: :post %>
+        <% end %>
+        <% if post.has_likers? %>
+          <%= "(#{post.num_likes})" %>
+        <% end %>
       </div>
     </div>
   <% end %>

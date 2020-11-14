@@ -13,4 +13,16 @@ class Post < ApplicationRecord
     post_img.variant(resize_to_limit: [200, 200])
   end
 
+  def has_likers?
+    self.likers.any?
+  end
+
+  def num_likes
+    self.likers.count
+  end
+
+  def has_liked?(user)
+    self.likers.include?(user)
+  end
+
 end

@@ -18,6 +18,7 @@ class LikingsController < ApplicationController
   def destroy
     @liking = Liking.find(params[:id])
     @liking.destroy
+    redirect_to user_profile_path(current_user.id)
   end
 
   private
