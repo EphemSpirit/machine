@@ -21,7 +21,7 @@
         </div>
       <% end %>
       <div>
-        Comment
+        <%= link_to "Comment", new_post_comment_path(post.id) %>
         <% if post.has_liked?(current_user) %>
           Like
         <% else %>

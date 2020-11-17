@@ -1,0 +1,25 @@
+<div class="container mx-auto w-full">
+  <h2 class="font-bold underline my-4">Post by <%= @post.author.name %></h2>
+  <div class="w-2/5 py-4 pl-4">
+    <%= @post.body %>
+  </div>
+  <%= form_with(model: @commment, url: post_comments_path(@post.id, comment: { commenter_id: current_user.id, commented_psot_id: @post.id }), local: true) do |f| %>
+    <%= f.hidden_field :commented_post_id, value: @post.id %>
+    <% if @comment.errors.any? %>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <ul>
+          <li><%= msg %></li>
+        </ul>
+      <% end %>
+    <% end %>
+    <div class="my-4">
+      <%= f.label :body, "Comment: " %>
+    </div>
+    <div class="mb-4">
+      <%= f.text_area :body, placeholder: "Write your comment here...", size: "54x10", class: "border border-black" %>
+    </div>
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
