@@ -3,15 +3,9 @@
   <div class="w-2/5 py-4 pl-4">
     <%= @post.body %>
   </div>
-  <%= form_with(model: @commment, url: post_comments_path(@post.id, comment: { commenter_id: current_user.id, commented_psot_id: @post.id }), local: true) do |f| %>
+  <%= form_with(model: Comment.new, url: post_comments_path, local: true) do |f| %>
     <%= f.hidden_field :commented_post_id, value: @post.id %>
-    <% if @comment.errors.any? %>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <ul>
-          <li><%= msg %></li>
-        </ul>
-      <% end %>
-    <% end %>
+    <%= f.hidden_field :commenter_id, value: current_user.id %>
     <div class="my-4">
       <%= f.label :body, "Comment: " %>
     </div>

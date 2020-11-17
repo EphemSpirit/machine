@@ -31,6 +31,14 @@
           <%= "(#{post.num_likes})" %>
         <% end %>
       </div>
+      <div class="border border-top-black">
+        <% if post.comments.any? %>
+          <%= post.comments.each do |comment| %>
+            <%= comment.commenter.name %>
+            <%= comment.body %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

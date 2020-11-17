@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
     else
       render :new
       flash[:notice] = "something's fishy, try again!"
+      p @comment.errors.full_messages
     end
   end
 
