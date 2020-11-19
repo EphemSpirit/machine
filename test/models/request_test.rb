@@ -39,13 +39,4 @@ class RequestTest < ActiveSupport::TestCase
     assert Request.where(sender: @user)
   end
 
-  test "doesn't create duplicate requests" do
-    req = @user.requests.build(sender: @user, receiver: @friendo)
-    req.save
-    assert_no_difference 'Request.count' do
-      new_req = @user.requests.build(sender: @user, receiver: @friendo)
-      new_req.save
-    end
-  end
-
 end

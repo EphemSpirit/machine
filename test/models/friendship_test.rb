@@ -25,7 +25,7 @@ class FriendshipTest < ActiveSupport::TestCase
     friendship = @user.friendships.build(friender_id: @user.id)
     assert_not friendship.valid?
   end
-
+  
   test "saves a valid friendship" do
     friendship = @user.friendships.build(friender_id: @user.id, friendee_id: @friendo.id)
     assert_difference 'Friendship.count', 1 do
