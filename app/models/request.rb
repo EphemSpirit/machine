@@ -4,6 +4,4 @@ class Request < ApplicationRecord
 
   validates :sender, presence: true
   validates :receiver, presence: true
-  validates :sender, uniqueness: true
-  validates :receiver, uniqueness: true
 end

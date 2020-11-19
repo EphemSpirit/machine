@@ -3,7 +3,7 @@
   <div class="w-2/5 py-4 pl-4">
     <%= @post.body %>
   </div>
-  <%= form_with(model: Comment.new, url: post_comments_path, local: true) do |f| %>
+  <%= form_with(model: [@post, @comment], url: post_comments_path, local: true) do |f| %>
     <%= f.hidden_field :commented_post_id, value: @post.id %>
     <%= f.hidden_field :commenter_id, value: current_user.id %>
     <div class="my-4">
@@ -13,7 +13,7 @@
       <%= f.text_area :body, placeholder: "Write your comment here...", size: "54x10", class: "border border-black" %>
     </div>
     <div>
-      <%= f.submit %>
+      <%= f.submit "Post Comment" %>
     </div>
   <% end %>
 </div>

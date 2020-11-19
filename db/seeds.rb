@@ -5,11 +5,15 @@ require 'open-uri'
   name = Faker::Name.first_name
   email = Faker::Internet.safe_email
   username = "itsuser#{n+1}"
-  user = User.create!(name: name,
-                      email: email,
-                      username: username,
-                      password: 'password',
-                      password_confirmation: 'password')
+  begin
+    user = User.create!(name: name,
+                        email: email,
+                        username: username,
+                        password: 'password',
+                        password_confirmation: 'password')
+  rescue
+    continue
+  end
 end
 
 @users = User.all
@@ -20,4 +24,33 @@ end
   user.profile.bio = Faker::Lorem.sentence(word_count: 5)
   user.profile.birthday = Faker::Date.birthday(min_age: 18, max_age: 50)
   user.profile.save
+end
+
+#build some friendships
+20.times do
+  @users = User.all
+  buddy = @users.sample
+  begin
+    buddy.friendships.create!(friender: buddy, friendee: @users.sample)
+  rescue
+    continue
+  end
+end
+
+#build some inverse friendships
+20.times do
+  @user = User.all
+  friend = @users.sample
+  begin
+    friend.inverse_friends.create!(friender: @users.sample, friendee: friend)
+  rescue
+    continue
+  end
+end
+
+#build posts
+100.times do
+  @users = User.all
+  @user = @users.sample
+  @user.posts.create!(author: @user, body: Faker::Lorem.paragraph(sentence_count: 4))
 end
