@@ -2,6 +2,8 @@ class Profile < ApplicationRecord
   belongs_to :owner, class_name: "User", foreign_key: :user_id
   has_one_attached :profile_pic
 
+  after_create :send_thank_you
+
   #validations
   validates :bio, length: { maximum: 50 }
   validates :profile_pic, content_type: { in: %w[image/jpeg image/png] },
@@ -16,5 +18,11 @@ class Profile < ApplicationRecord
   def feed
     @feed_posts = all_friends(self.owner)
   end
+
+  private
+
+    def send_thank_you
+      UserMailer.thank_you(self.owner).deliver_now!
+    end
 
 end

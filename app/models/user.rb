@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   #callbacks
   after_create :build_profile
+  #after_save :send_thank_you
 
   #associations
   has_many :requests
@@ -44,5 +45,9 @@ class User < ApplicationRecord
     def build_profile
       Profile.create(user_id: self.id)
     end
+
+    # def send_thank_you
+    #   UserMailer.thank_you(self).deliver_now!
+    # end
 
 end
