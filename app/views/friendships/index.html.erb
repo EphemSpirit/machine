@@ -3,9 +3,13 @@
 <div class="container mx-auto text-centermb-4 w-2/5 py-4">
   <h1 class="text-center font-bold underline">Your Friends</h1>
   <% @friendships.each do |friendship| %>
-  <div class="bg-white shadow-md px-4 py-2 text-center h-24">
-    <aside class="h-full border border-black float-left text-center">
-      Profile pic
+  <div class="bg-white shadow-md px-4 py-2 text-center h-24 mb-4">
+    <aside class="h-full float-left text-center">
+      <% if is_friender?(friendship, current_user) %>
+        <%= image_tag friendship.friendee.profile.show_image, class: "rounded-full items-center justify-center w-16 h-16 m-auto my-2" %>
+      <% else %>
+        <%= image_tag friendship.friender.profile.show_image, class: "rounded-full items-center justify-center w-16 h-16 m-auto my-2" %>
+      <% end %>
     </aside>
     <div class="pt-4 pr-16 font-bold underline">
       <% if is_friender?(friendship, current_user) %>

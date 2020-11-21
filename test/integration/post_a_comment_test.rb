@@ -28,5 +28,6 @@ class PostACommentTest < ActionDispatch::IntegrationTest
     assert_difference 'Comment.count', 1 do
       post post_comments_path(@post.id), params: { post: { comment: { commenter_id: @user.id, commented_post_id: @post.id, body: "test comment" } } }
     end
+    assert_redirected_to user_profile_path(@user.id)
   end
 end

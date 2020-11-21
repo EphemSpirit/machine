@@ -35,4 +35,16 @@ class UserSignupTest < ActionDispatch::IntegrationTest
     assert_redirected_to users_path
   end
 
+  test "creates a profile for the user and send a welcome email upon sign-up" do
+    get new_user_registration_path
+    assert_difference 'Profile.count', 1 do
+      post user_registration_path, params: { user: { name: @user.name,
+                                                     email: @user.email,
+                                                     username: @user.username,
+                                                     password: @user.password,
+                                                     password_confirmation: @user.password_confirmation } }
+    end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+  end
+
 end

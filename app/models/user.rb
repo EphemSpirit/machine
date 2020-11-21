@@ -6,21 +6,20 @@ class User < ApplicationRecord
 
   #callbacks
   after_create :build_profile
-  #after_save :send_thank_you
 
   #associations
-  has_many :requests
+  has_many :requests, dependent: :destroy
   has_many :pending_friends, through: :requests, source: :receiver
   has_many :inverse_requests, class_name: "Request", foreign_key: :receiver_id
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, source: :friendee
   has_many :inverse_friends, class_name: "Friendship", foreign_key: :friendee_id
-  has_one :profile
-  has_many :posts, foreign_key: :author_id
-  has_many :likes
+  has_one :profile, dependent: :destroy
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :likings, foreign_key: :liker_id
   has_many :liked_posts, through: :likings, source: :liker
-  has_many :comments, foreign_key: :commenter_id
+  has_many :comments, foreign_key: :commenter_id, dependent: :destroy
 
   #email regex
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -43,11 +42,8 @@ class User < ApplicationRecord
   private
 
     def build_profile
-      Profile.create(user_id: self.id)
+      Profile.create(user_id: self.id,
+                      bio: Faker::Lorem.sentence)
     end
-
-    # def send_thank_you
-    #   UserMailer.thank_you(self).deliver_now!
-    # end
 
 end
