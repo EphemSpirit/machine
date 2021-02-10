@@ -5,15 +5,11 @@ require 'open-uri'
   name = Faker::Name.first_name
   email = Faker::Internet.safe_email
   username = "itsuser#{n+1}"
-  begin
     user = User.create!(name: name,
                         email: email,
                         username: username,
                         password: 'password',
                         password_confirmation: 'password')
-  rescue
-    continue
-  end
 end
 
 @users = User.all
@@ -30,22 +26,17 @@ end
 20.times do
   @users = User.all
   buddy = @users.sample
-  begin
-    buddy.friendships.create!(friender: buddy, friendee: @users.sample)
-  rescue
-    continue
-  end
+
+  buddy.friendships.create!(friender: buddy, friendee: @users.sample)
+
 end
 
 #build some inverse friendships
 20.times do
   @user = User.all
   friend = @users.sample
-  begin
-    friend.inverse_friends.create!(friender: @users.sample, friendee: friend)
-  rescue
-    continue
-  end
+  friend.inverse_friends.create!(friender: @users.sample, friendee: friend)
+
 end
 
 #build posts

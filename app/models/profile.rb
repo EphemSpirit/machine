@@ -2,7 +2,7 @@ class Profile < ApplicationRecord
   belongs_to :owner, class_name: "User", foreign_key: :user_id
   has_one_attached :profile_pic
 
-  after_create :send_thank_you
+  #after_create :send_thank_you
 
   #validations
   validates :bio, length: { maximum: 50 }
