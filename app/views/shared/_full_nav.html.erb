@@ -1,11 +1,22 @@
-<nav class="flex items-center justify-between flex-wrap bg-blue-500 p-6">
-  <div class="flex items-center text-white uppercase mr-6">
-    The Machine
+<div class="ui inverted huge menu">
+  <%= link_to "The Machine", root_path, class: "active item" %>
+  <div class="right menu">
+    <% if !user_signed_in? %>
+      <%= link_to "Sign In", new_user_session_path, class: "item right floated" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "item right floated" %>
+    <% else %>
+      <div class="ui right item">
+        <%= link_to "My Friends", user_friendships_path(current_user) %>
+      </div>
+      <div class="ui dropdown right item">
+        Account
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item"><%= link_to "My Page", user_path(current_user) %></div>
+          <div class="item"><%= link_to "Edit Account", edit_user_profile_path(current_user), class: "drop-item" %></div>
+          <div class="item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div class="float-right">
-    <%= link_to "Users", users_path %>
-    <%= link_to "My Profile", user_profile_path(current_user.id), class: "px-4" %>
-    <%= link_to "My Friends (#{total_friends(current_user)})", user_friendships_path(current_user.id), class: "px-4" %>
-    <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "mx-4" %>
-  </div>
-</nav>
+</div>

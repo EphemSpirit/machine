@@ -1,14 +1,19 @@
 @import "semantic-ui";
 
 .centered.card {
-  padding-top: 20px;
+  margin-top: 20px;
   padding-bottom: 20px;
 }
 
-.sign-in, .sign-up {
+.sign-in, .sign-up, .profile-edit {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+// .profile-edit {
+//   padding-top: 20px;
+//   padding-bottom: 20px;
+// }
 
 .devise-link {
   display: inline-block;
@@ -18,12 +23,17 @@
   margin-top: 50px;
   margin-left: 30px;
 }
+
 .inverted.segment {
-  padding-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .info-header {
   padding-top: 25px;
+}
+
+.drop-item {
+  color: black;
 }
 
 // @import "bootstrap-sprockets";
