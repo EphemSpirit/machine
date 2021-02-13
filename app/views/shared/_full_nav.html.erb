@@ -6,6 +6,9 @@
       <%= link_to "Sign Up", new_user_registration_path, class: "item right floated" %>
     <% else %>
       <div class="ui right item">
+        <%= link_to "My Profile", user_profile_path(current_user) %>
+      </div>
+      <div class="ui right item">
         <%= link_to "My Friends", user_friendships_path(current_user) %>
       </div>
       <div class="ui dropdown right item">

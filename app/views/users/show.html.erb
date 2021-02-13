@@ -8,7 +8,9 @@
   </div>
 
   <div class="ui eight wide column">
-    <h2 class="ui center aligned header">My Posts</h2>
+    <h2 class="ui center aligned header">
+      <%= @user == current_user ? "My Posts" : "#{@user.name}'s Posts" %>
+    </h2>
     <% @user.posts.each do |post| %>
       <div class="ui centered card">
         <% if post.post_img.attached? %>
