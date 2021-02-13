@@ -21,6 +21,13 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likings, source: :liker
   has_many :comments, foreign_key: :commenter_id, dependent: :destroy
 
+  # scope :recent_friend_posts, ->{ Post.where(author: [friends]).or(Post.where(author: [inverse_friends])).order("desc").limit(5)}
+  scope :num_requests, ->{ Request.where("receiver_id = ? AND accepted IS NULL", self.id).size }
+  scope :teaser_posts, ->{ Post.where(author: self.friends)
+                               .or(Post.where(author: self.inverse_friends))
+                               .order("created_at DESC")
+                               .limit(10)}
+
   #email regex
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -29,9 +36,13 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { in: 6..20 }
   validates :username, uniqueness: true
   validates :name, presence: true
+  #
+  # def num_requests
+  #   Request.where("receiver_id = ? AND accepted IS NULL", self.id).size
+  # end
 
-  def num_requests
-    Request.where("receiver_id = ? AND accepted IS NULL", self.id).size
+  def recommendations
+    User.where.not(id: self.friends).or(User.where.not(id: self.inverse_friends)).limit(5)
   end
 
   def feed_posts

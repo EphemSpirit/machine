@@ -1,22 +1,43 @@
-<aside class="float-left m-auto w-4/12">
-  <% if current_user.profile.profile_pic.attached? %>
-    <%= image_tag current_user.profile.display_image, class: "rounded-full items-center justify-center w-32 h-32 m-auto my-4" %>
-  <% end %>
+<!-- <aside class="float-left m-auto w-4/12">
+  <%# if current_user.profile.profile_pic.attached? %>
+    <%#= image_tag current_user.profile.display_image, class: "rounded-full items-center justify-center w-32 h-32 m-auto my-4" %>
+  <%# end %>
   <div class="w-2/5 bg-gray-400 m-auto py-8 px-4 text-center rounded-full items-center justify-center mb-4">
-    <%= current_user.profile.bio %>
+    <%#= current_user.profile.bio %>
   </div>
   <div class="bg-gray-400 m-auto py-4 text-center w-2/5 mb-4">
-    <%= link_to "My Posts", user_path(current_user), class: "font-bold underline" %>
+    <%#= link_to "My Posts", user_path(current_user), class: "font-bold underline" %>
     <div>
-      <%= link_to "Friend Requests", user_requests_path(current_user.id) %>
+      <%#= link_to "Friend Requests", user_requests_path(current_user.id) %>
     </div>
   </div>
   <div class="m-auto py-4 px-2 text-center">
     <button class="bg-blue-500 py-4 px-2 rounded">
-      <%= link_to "Edit My Account", edit_user_registration_path(current_user.id) %>
+      <%#= link_to "Edit My Account", edit_user_registration_path(current_user.id) %>
     </button>
     <button class="bg-blue-500 py-4 px-2 rounded">
-      <%= link_to "Edit My Profile", edit_user_profile_path(current_user.id) %>
+      <%#= link_to "Edit My Profile", edit_user_profile_path(current_user.id) %>
     </button>
   </div>
-</aside>
+</aside> -->
+
+<h4 class="ui centered header info-header">My Info</h4>
+<div class="ui left floated card">
+  <%= image_tag current_user.profile.profile_pic %>
+  <div class="content">
+    <div class="header">
+      <%= current_user.name %>
+    </div>
+    <%= current_user.profile.bio %>
+  </div>
+  <div class="extra content">
+    <div class="ui two buttons">
+      <div class="ui basic green button">
+        <%= link_to "My Posts", user_path(current_user) %>
+      </div>
+      <div class="ui basic green button">
+        <%= link_to "Freind Requests", user_requests_path(current_user.id) %>
+      </div>
+    </div>
+  </div>
+</div>
