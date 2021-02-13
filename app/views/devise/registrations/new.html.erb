@@ -1,53 +1,48 @@
-<div class="container mx-auto text-center py-5">
-  <h2 class="font-bold uppercase">Sign-Up</h2>
-</div>
+<h2 class="ui centered header">Welcome!</h2>
+<h4 class="ui centered header">The Machine is the best place to manufacture friendships!</h4>
+<h5 class="ui centered header">Sign Up Today!</h5>
 
 
-<div class="container mx-auto w-full max-w-xs">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "bg-white shadow-md px-8 py-6 mb-4") do |f| %>
-    <div class="bg-red-200 font-bold">
-      <%= render "devise/shared/error_messages", resource: resource %>
+<div class="ui container">
+  <div class="ui centered card">
+    <div class="ui centered grid">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="field sign-up">
+          <%= f.input :name,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }%>
+        </div>
+        <div class="field sign-up">
+          <%= f.input :username,
+                      required: true,
+                      input_html: { autocomplete: "email" }%>
+        </div>
+        <div class="field sign-up">
+          <%= f.input :email,
+                      required: true,
+                      input_html: { autocomplete: "email" }%>
+        </div>
+        <div class="field sign-up">
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+        <div class="field sign-up">
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class: "positive ui button" %>
+        </div>
+
+         <%= link_to "Already have an account? Sign In!", new_user_session_path %>
+      <% end %>
     </div>
-
-    <div class="mb-4">
-      <%= f.label :name, class: "block text-gray-700 text-md font-bold" %><br />
-      <%= f.text_field :name, class: "shadow border rounded w-full py-2 px-3 text-gray-700" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :username, class: "block text-gray-700 text-md font-bold" %><br />
-      <%= f.text_field :username, class: "shadow border rounded w-full py-2 px-3 text-gray-700" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :email, class: "block text-gray-700 text-md font-bold" %><br />
-      <%= f.email_field :email, autocomplete: "email", class: "shadow border rounded w-full py-2 px-3 text-gray-700" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :password, class: "block text-gray-700 text-md font-bold" %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: "shadow border rounded w-full py-2 px-3 text-gray-700" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :password_confirmation, class: "block text-gray-700 text-md font-bold" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "current-password", class: "shadow border rounded w-full py-2 px-3 text-gray-700" %>
-    </div>
-
-    <% if devise_mapping.rememberable? %>
-      <div class="mb-4">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-      </div>
-    <% end %>
-
-    <div class="mb-4 ml-4 items-center">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white py-6 px-10 mx-16 rounded">
-        <%= f.submit "Log in" %>
-      </button>
-    </div>
-  <% end %>
-  <div class="container mx-auto ml-4">
-    Already have an account? <%= render "devise/shared/links" %>
   </div>
 </div>
