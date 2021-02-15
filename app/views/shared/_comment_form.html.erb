@@ -1,0 +1,10 @@
+<%= simple_form_for([@post, Comment.new], url: post_comments_path, local: true, html: { class: "ui form" }) do |f| %>
+  <%= f.hidden_field :commented_post_id, value: @post.id %>
+  <%= f.hidden_field :commenter_id, value: current_user.id %>
+  <div class="field">
+    <%= f.input :body, as: :text, placeholder: "Write a comment...", label: false %>
+  </div>
+  <div class="field">
+    <%= f.button :submit, "Post Comment", class: "ui positive button" %>
+  </div>
+<% end %>

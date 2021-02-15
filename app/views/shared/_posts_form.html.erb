@@ -1,17 +1,12 @@
-<div class="items-center justify-center pt-6">
-  <%= form_with(model: @post, url: posts_path, local: true) do |f| %>
-    <div class="mb-4">
-      <%= f.label :body, "Make a New Post!" %>
+<h2 class="ui center aligned header">Make A New Post</h2>
+<%= simple_form_for(@post, url: posts_path, local: true, html: { class: "ui form" }) do |f| %>
+    <div class="field">
+      <%= f.input :body, as: :text, placeholder: "What's on your mind?", label: false %>
     </div>
-    <div class="items-center">
-      <div class="mb-4 pl-12">
-        <%= f.text_area :body, placeholder: "Write something here...", size: "54x10", class: "border border-black" %>
-      </div>
+    <div class="field">
+      <%= f.input :post_img, as: :file , label: false %>
     </div>
-    <div class="mb-4">
-      <%= f.label :post_img, "Add an Image:" %>
-      <%= f.file_field :post_img %>
-      <%= f.submit "Post", class: "bg-blue-500 px-4 py-2 rounded-full" %>
+    <div class="field">
+      <%= f.button :submit, "Publish", class: "ui positive button" %>
     </div>
-  <% end %>
-</div>
+<% end %>

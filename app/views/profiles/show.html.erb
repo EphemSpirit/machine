@@ -1,47 +1,31 @@
-<% if @profile.owner == current_user %>
-  <%= render 'shared/current_user_info' %>
-  <%= render 'shared/posts_form' %>
-<% else %>
-  <%= render 'shared/user_info' %>
-<% end %>
-
-<div class="container mx-auto text-center mb-4 w-2/5 py-4">
-  <h2 class="underline font-bold pb-4">Your Feed</h2>
-  <% @profile.owner.feed_posts.each do |post| %>
-    <div class="bg-white shadow-md px-8 py-6 mb-4">
-      <div class="mb-4 underline font-bold">
-        <%= link_to post.author.name, user_path(post.author.id) %>
-      </div>
-      <div class="mb-4">
-        <%= post.body %>
-      </div>
-      <% if post.post_img.attached? %>
-        <div class="mb-4">
-          <%= image_tag post.display_post_image, class: "pl-40" %>
-        </div>
+<div class="ui internally celled grid">
+  <div class="row">
+    <div class="three wide column profile-show">
+      <% if @profile.owner == current_user %>
+        <%= render 'shared/current_user_info' %>
+      <% else %>
+        <%= render 'shared/user_info' %>
       <% end %>
-      <div>
-        <% if post.comments.any? %>
-        <div class="border border-top-black">
-          <% post.comments.each do |comment| %>
-          <div>
-            <%= "#{comment.commenter.name} says:" %>
-          </div>
-            <%= comment.body %>
-          <% end %>
-        </div>
-        <% end %>
-        <%= link_to "Comment", new_post_comment_path(post.id) %>
-        <% if post.has_liked?(current_user) %>
-          Like
-        <% else %>
-          <%= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), method: :post %>
-        <% end %>
-        <% if post.has_likers? %>
-          <%= "(#{post.num_likes})" %>
-        <% end %>
-      </div>
-
     </div>
-  <% end %>
+    <div class="ten wide centered column">
+      <% if @profile.owner == current_user %>
+        <%= render 'shared/posts_form' %>
+      <% end %>
+    </div>
+    <div class="three wide column">
+      <img>
+    </div>
+  </div>
+  <div class="row">
+    <div class="three wide column">
+      <img>
+    </div>
+    <div class="ten wide centered column">
+      <h2 class="ui center aligned header">Your Feed</h2>
+      <%= render 'shared/feed', profile: @profile %>
+    </div>
+    <div class="three wide column">
+      <img>
+    </div>
+  </div>
 </div>

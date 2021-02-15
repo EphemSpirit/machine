@@ -38,19 +38,21 @@
     <% @friendships.each do |friendship| %>
       <div class="ui cards">
         <div class="card">
-          <div class="content">
+          <div class="image">
             <% if is_friender?(friendship, current_user) %>
-              <%= image_tag friendship.friendee.profile.profile_pic, class: "ui left floated image" %>
+              <%= image_tag friendship.friendee.profile.profile_pic %>
             <% else %>
-              <%= image_tag friendship.friender.profile.profile_pic, class: "ui left floated image" %>
+              <%= image_tag friendship.friender.profile.profile_pic %>
             <% end %>
           </div>
-          <div class="header">
-            <% if is_friender?(friendship, current_user) %>
-              <%= friendship.friendee.name %>
-            <% else %>
-              <%= friendship.friender.name %>
-            <% end %>
+          <div class="content">
+            <div class="header">
+              <% if is_friender?(friendship, current_user) %>
+                <%= friendship.friendee.name %>
+              <% else %>
+                <%= friendship.friender.name %>
+              <% end %>
+            </div>
           </div>
           <div class="extra content">
             <div class="ui two buttons">
