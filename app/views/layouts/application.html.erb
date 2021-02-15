@@ -16,11 +16,7 @@
     <% else %>
       <%= render 'shared/base_nav' %>
     <% end %>
-    <% if flash[:notice] %>
-      <p class="w-3/4 bg-red-400 mx-auto py-4 text-center">
-        <%= notice %>
-      </p>
-    <% end %>
+    <%= render 'shared/error_messages' %>
     <%= yield %>
     <%= debug(params) if Rails.env.development? %>
   </body>

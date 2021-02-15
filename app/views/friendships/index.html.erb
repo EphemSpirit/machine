@@ -56,8 +56,8 @@
           </div>
           <div class="extra content">
             <div class="ui two buttons">
-              <%= link_to "View Their Posts", (user_path(is_friendee?(friendship, current_user) ? friendship.friender : friendship.friendee)), class: "ui basic green button" %>
-              <%= link_to "Delete Friend", (user_friendships_path(is_friendee?(friendship, current_user) ? friendship.friender.id : friendship.friendee.id)),
+              <%= link_to "View Their Posts", user_path(is_friendee?(friendship, current_user) ? friendship.friender : friendship.friendee), class: "ui basic green button" %>
+              <%= link_to "Delete Friend", user_friendship_path(current_user.id, is_friendee?(friendship, current_user) ? friendship.friender.id : friendship.friendee.id),
                                            method: :delete, data: { confirm: "Are You Sure?" }, class: "ui basic red button" %>
             </div>
           </div>
