@@ -6,14 +6,20 @@
     <div class="content">
       <%= post.body %>
     </div>
-  </div>
   <% if post.post_img.attached? %>
     <div class="image">
       <%= img_tag post.post_img %>
     </div>
   <% end %>
+  <%= link_to "Comment", new_post_comment_path(post.id) %>
+  <% if post.has_liked?(current_user) %>
+    Like
+  <% else %>
+    <%= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }) %>
+  <% end %>
   <% if post.comments.any? %>
     <hr />
+    <h5 class="ui header">Comments</h5>
     <% post.comments.each do |comment| %>
       <div class="header">
         <%= comment.commenter.name %> says:
@@ -23,12 +29,8 @@
       </div>
     <% end %>
   <% end %>
-  <%= link_to "Comment", new_post_comment_path(post.id) %>
-  <% if post.has_liked?(current_user) %>
-    Like
-  <% else %>
-    <%= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }, method: :post) %>
-  <% end %>
+
+  </div>
 <% end %>
 
 
