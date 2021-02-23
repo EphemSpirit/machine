@@ -8,14 +8,14 @@
     </div>
   <% if post.post_img.attached? %>
     <div class="image">
-      <%= img_tag post.post_img %>
+      <%= image_tag post.display_post_image %>
     </div>
   <% end %>
-  <%= link_to "Comment", new_post_comment_path(post.id) %>
+  <%= link_to "Comment", new_post_comment_path(post.id), class: "positive ui button" %>
   <% if post.has_liked?(current_user) %>
-    Like
+    <button class="ui button"><%= "Likes (#{post.num_likes})" %></button>
   <% else %>
-    <%= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }) %>
+    <%= button_to "Like (#{post.num_likes})", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), class: "positive ui button" %>
   <% end %>
   <% if post.comments.any? %>
     <hr />
@@ -32,42 +32,3 @@
 
   </div>
 <% end %>
-
-
-<%# @profile.owner.feed_posts.each do |post| %>
-  <!-- <div class="bg-white shadow-md px-8 py-6 mb-4">
-    <div class="mb-4 underline font-bold">
-      <%#= link_to post.author.name, user_path(post.author.id) %>
-    </div>
-    <div class="mb-4">
-      <%#= post.body %>
-    </div>
-    <%# if post.post_img.attached? %>
-      <div class="mb-4">
-        <%#= image_tag post.display_post_image, class: "pl-40" %>
-      </div>
-    <%# end %>
-    <div>
-      <%# if post.comments.any? %>
-      <div class="border border-top-black">
-        <%# post.comments.each do |comment| %>
-        <div>
-          <%#= "#{comment.commenter.name} says:" %>
-        </div>
-          <%#= comment.body %>
-        <%# end %>
-      </div>
-      <%# end %>
-      <%#= link_to "Comment", new_post_comment_path(post.id) %>
-      <%# if post.has_liked?(current_user) %>
-        Like
-      <%# else %>
-        <%#= link_to "Like", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), method: :post %>
-      <%# end %>
-      <%# if post.has_likers? %>
-        <%#= "(#{post.num_likes})" %>
-      <%# end %>
-    </div>
-
-  </div> -->
-<%# end %>

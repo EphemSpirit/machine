@@ -1,4 +1,4 @@
-<div class="ui grid">
+<div class="ui internally celled grid">
   <div class="ui four wide column">
     <% if @user == current_user %>
       <%= render 'shared/current_user_info' %>
@@ -20,6 +20,8 @@
         <% end %>
         <div class="content">
           <%= post.body %>
+          <br>
+          <small><%= "Posted: #{distance_of_time_in_words(Time.now, post.created_at)} ago" %></small>
         </div>
       </div>
     <% end %>

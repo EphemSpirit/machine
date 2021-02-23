@@ -1,4 +1,4 @@
-<div class="ui grid">
+<div class="ui internally celled grid">
   <div class="ui grid four wide column">
     <%= render 'shared/current_user_info' %>
   </div>
@@ -21,6 +21,9 @@
         </div>
       </div>
     <% end %>
+    <div class="paginate">
+      <%= will_paginate @users %>
+    </div>
   </div>
 
   <div class="ui grid four wide column">

@@ -1,35 +1,6 @@
-<%#= render 'shared/current_user_info' %>
-
-<!-- <div class="container mx-auto text-centermb-4 w-2/5 py-4">
-  <h1 class="text-center font-bold underline">Your Friends</h1>
-  <%# @friendships.each do |friendship| %>
-  <div class="bg-white shadow-md px-4 py-2 text-center h-24 mb-4">
-    <aside class="h-full float-left text-center">
-      <%# if is_friender?(friendship, current_user) %>
-        <%#= image_tag friendship.friendee.profile.show_image, class: "rounded-full items-center justify-center w-16 h-16 m-auto my-2" %>
-      <%# else %>
-        <%#= image_tag friendship.friender.profile.show_image, class: "rounded-full items-center justify-center w-16 h-16 m-auto my-2" %>
-      <%# end %>
-    </aside>
-    <div class="pt-4 pr-16 font-bold underline">
-      <%# if is_friender?(friendship, current_user) %>
-        <%#= "#{friendship.friendee.name}" %>
-      <%# else %>
-        <%#= "#{friendship.friender.name}" %>
-      <%# end %>
-    </div>
-    <div class="pt-2 pr-20">
-      <%#= link_to "View Their Posts", user_path(is_friendee?(friendship, current_user) ? friendship.friender : friendship.friendee) %> |
-      <%#= link_to "Delete Friend", user_friendships_path(is_friendee?(friendship, current_user) ? friendship.friender.id : friendship.friendee.id),
-                                   method: :delete, data: { confirm: "Are You Sure?" } %>
-    </div>
-  </div>
-  <%# end %>
-</div> -->
-
 <h2 class="ui centered header">My Friends</h2>
 
-<div class="ui grid">
+<div class="ui internally celled grid">
   <div class="ui four wide column">
     <%= render 'shared/current_user_info' %>
   </div>
