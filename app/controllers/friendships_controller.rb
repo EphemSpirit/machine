@@ -12,7 +12,7 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = current_user.friendships.build(friendship_params)
 
-    if Friendship.all.any?{ |x| x.friender_id == @friendship.friender_id || x.friendee_id == @friendship.friendee_id }
+    if already_friends?(@friendship)
       redirect_to root_url
       flash[:notice] = "You're Already Friends With This Person"
     elsif @friendship.save
@@ -38,6 +38,11 @@ class FriendshipsController < ApplicationController
 
     def friendship_params
       params.require(:friendship).permit(:friender_id, :friendee_id)
+    end
+
+    def already_friends?(friendship)
+      Friendship.any?{ |x| x.friender == friendship.friender && x.friendee == friendship.friendee } ||
+      Friendship.any?{ |x| x.friender == friendship.friendee && x.friendee == friendship.friender }
     end
 
 end

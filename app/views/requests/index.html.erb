@@ -38,14 +38,14 @@
           </div>
           <div class="content">
             <div class="header">
-              <%= "#{request.sender.name} sent you a Friend Request!" %>
+              <%= link_to request.sender.name, user_path(request.sender) %> sent you a request!
             </div>
           </div>
           <div class="extra content">
             <div class="ui two buttons">
               <%= link_to "Accept", user_friendships_path(user_id: current_user.id,
                                                              friendship: { friender_id: request.sender.id, friendee_id: current_user.id }), method: :post,
-                                                             class: "ui positive button" %>
+                                                             class: "ui positive button", data: { confirm: "Accept this person as a friend?" } %>
               <%= link_to "Deny", user_request_path(current_user.id, request), method: :patch, class: "ui negative button" %>
             </div>
           </div>

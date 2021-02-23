@@ -14,7 +14,7 @@
       <div class="ui dropdown right item">
         Account
         <i class="dropdown icon"></i>
-        <div class="menu">
+        <div class="inverted menu">
           <div class="item"><%= link_to "My Page", user_path(current_user) %></div>
           <div class="item"><%= link_to "Edit Account", edit_user_profile_path(current_user), class: "drop-item" %></div>
           <div class="item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></div>
