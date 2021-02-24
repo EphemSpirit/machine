@@ -1,19 +1,43 @@
-<div class="container mx-auto w-full">
-  <h2 class="font-bold underline my-4">Post by <%= @post.author.name %></h2>
+<!-- <div class="container mx-auto w-full">
+  <h2 class="font-bold underline my-4">Post by <%#= @post.author.name %></h2>
   <div class="w-2/5 py-4 pl-4">
-    <%= @post.body %>
+    <%#= @post.body %>
   </div>
-  <%= form_with(model: [@post, @comment], url: post_comments_path, local: true) do |f| %>
-    <%= f.hidden_field :commented_post_id, value: @post.id %>
-    <%= f.hidden_field :commenter_id, value: current_user.id %>
+  <%#= form_with(model: [@post, @comment], url: post_comments_path, local: true) do |f| %>
+    <%#= f.hidden_field :commented_post_id, value: @post.id %>
+    <%#= f.hidden_field :commenter_id, value: current_user.id %>
     <div class="my-4">
-      <%= f.label :body, "Comment: " %>
+      <%#= f.label :body, "Comment: " %>
     </div>
     <div class="mb-4">
-      <%= f.text_area :body, placeholder: "Write your comment here...", size: "54x10", class: "border border-black" %>
+      <%#= f.text_area :body, placeholder: "Write your comment here...", size: "54x10", class: "border border-black" %>
     </div>
     <div>
-      <%= f.submit "Post Comment" %>
+      <%#= f.submit "Post Comment" %>
     </div>
-  <% end %>
+  <%# end %>
+</div> -->
+
+<h2 class="ui centered header">Post a Comment</h2>
+
+<div class="ui centered grid">
+  <div class="ui eight wide column">
+    <div class="ui centered segment">
+      <div class="header">
+        <%= @post.author.name %> wrote:
+      </div>
+      <div class="content">
+        <%= @post.body %>
+      </div>
+    </div>
+    <%= form_with(model: [@post, @comment], url: post_comments_path, local: true, class: "ui reply form") do |f| %>
+      <%= f.hidden_field :commented_post_id, value: @post.id %>
+      <%= f.hidden_field :commenter_id, value: current_user.id %>
+      <%= f.label :body, "Comment: " %>
+      <div class="field">
+        <%= f.text_area :body, placeholder: "Write your reply!" %>
+      </div>
+      <%= f.submit "Post Comment", class: "ui positive button" %>
+    <% end %>
+  </div>
 </div>

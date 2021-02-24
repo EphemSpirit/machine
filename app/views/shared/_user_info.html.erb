@@ -16,7 +16,9 @@
 </aside> -->
 
 <div class="ui left floated card">
-  <%= image_tag current_user.profile.profile_pic %>
+  <% if @user.profile.profile_pic.attached? %>
+    <%= image_tag @user.profile.display_image %>
+  <% end %>
   <div class="content">
     <div class="header">
       <%= current_user.name %>
