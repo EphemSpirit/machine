@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'sessions/destroy'
   get '/index', to: 'users#index'
-  get '/users' => 'profiles#edit', :as => :user_root
+  get '/users' => 'users#index', :as => :user_root
   devise_for :users
 
   devise_scope :user do
