@@ -6,7 +6,7 @@
       <%= simple_form_for(@profile, url: user_profile_path(current_user), method: :put, local: true, html: { class: "ui form" }) do |f| %>
         <%= image_tag current_user.profile.profile_pic %>
         <div class="field profile-edit edit-pic">
-          <%= f.input :profile_pic, as: :file %>
+          <%= f.input :profile_pic, as: :file, required: true %>
         </div>
         <div class="field profile-edit">
           <%= f.input :bio, as: :text %>

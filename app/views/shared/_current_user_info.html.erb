@@ -1,8 +1,6 @@
 <h4 class="ui centered header info-header">My Info</h4>
 <div class="ui left floated card">
-  <% if current_user.profile.profile_pic.attached? %>
-    <%= image_tag current_user.profile.profile_pic %>
-  <% end %>
+  <%= image_tag current_user.profile.profile_pic %>
   <div class="content">
     <div class="header">
       <%= current_user.name %>
