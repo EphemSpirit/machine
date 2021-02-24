@@ -4,7 +4,9 @@
   <div class="ui centered card">
     <div class="ui centered grid">
       <%= simple_form_for(@profile, url: user_profile_path(current_user), method: :put, local: true, html: { class: "ui form" }) do |f| %>
-        <%= image_tag current_user.profile.profile_pic %>
+        <% if current_user.profile.profile_pic.attached? %>
+          <%= image_tag current_user.profile.show_image %>
+        <% end %>
         <div class="field profile-edit edit-pic">
           <%= f.input :profile_pic, as: :file, required: true %>
         </div>
