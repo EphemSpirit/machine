@@ -10,6 +10,9 @@ class Post < ApplicationRecord
   validates :body, presence: true
   validates :author_id, presence: true
 
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+
   def display_post_image
     post_img.variant(resize_to_limit: [200, 200])
   end

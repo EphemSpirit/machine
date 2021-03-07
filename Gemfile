@@ -37,6 +37,7 @@ gem 'better_errors', '~> 2.8', '>= 2.8.3'
 gem 'binding_of_caller'
 gem 'semantic-ui-sass', '~> 2.4', '>= 2.4.2.0'
 gem 'simple_form', '~> 5.1'
+gem 'public_activity', '~> 1.6', '>= 1.6.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
