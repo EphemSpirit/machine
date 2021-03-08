@@ -1,0 +1,28 @@
+<h2 class="ui centered header"><%= @post.author.name %>'s Post</h2>
+
+<div class="ui centered grid">
+  <div class="ui eight wide column">
+    <div class="ui centered segment">
+      <div class="header">
+        <%= @post.author.name %> posted:
+      </div>
+      <div class="content">
+        <%= @post.post_img.attached? ? image_tag(@post.display_post_image) : nil %>
+        <hr />
+        <%= @post.body %>
+      </div>
+    </div>
+    <div class="ui centered segment">
+      <strong>Comments:</strong>
+      <div class="content">
+        <% @comments.each do |comment| %>
+          <div class="content">
+            <i><%= comment.commenter.name %></i>:
+            <%= comment.body %>
+          </div>
+          <hr />
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

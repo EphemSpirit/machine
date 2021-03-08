@@ -18,6 +18,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments
+  end
+
   def destroy
     @post.destroy
     flash[:notice] = "Post deleted"

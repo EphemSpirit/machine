@@ -13,7 +13,8 @@
       <% end %>
     </div>
     <div class="three wide column">
-      <img>
+      Activity Feed
+      <%= render_activities(@activities) %>
     </div>
   </div>
   <div class="row">
@@ -25,7 +26,6 @@
       <%= render 'shared/feed', profile: @profile %>
     </div>
     <div class="three wide column">
-      <img>
     </div>
   </div>
 </div>

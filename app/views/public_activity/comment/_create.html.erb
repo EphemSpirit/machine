@@ -1,0 +1,4 @@
+<li>
+  <%= link_to activity.trackable.commenter.name, user_path(activity.trackable.commenter) %> commented on <%= "#{activity.trackable.commented_post.author.name}" %>'s
+  <%= link_to "post", activity.trackable.commented_post %>
+</li>

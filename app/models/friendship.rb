@@ -5,7 +5,4 @@ class Friendship < ApplicationRecord
   validates :friender_id, presence: true
   validates :friendee_id, presence: true
 
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
-
 end
