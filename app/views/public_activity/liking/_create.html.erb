@@ -1,0 +1,4 @@
+<li>
+  <%= link_to activity.trackable.liker.name, user_path(activity.trackable.liker) %> liked <%= "#{activity.trackable.liked_post.author.name}" %>'s
+  <%= link_to "post", activity.trackable.liked_post %>
+</li>

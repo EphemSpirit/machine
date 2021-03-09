@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
 
   def show
     @post = Post.new
-    @activities = PublicActivity::Activity.order("created_at DESC").where(owner_id: current_user, owner_type: "User")
+    @activities = PublicActivity::Activity.order("created_at DESC").where(owner_id: current_user, owner_type: "User").limit(15)
   end
 
   def edit
