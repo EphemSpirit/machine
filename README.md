@@ -1,6 +1,6 @@
 <h1>The Machine</h1>
 
-Welcome to THe Machine! This website was built as the Final Project for The Odin Project's Ruby on Rails curriculum! The basice premise behind this website was to make a lightweight Facebook Clone, and the overall styling is not representative of current Facebook styling. I deleted my account years ago and am not familiar with what the site as a whole looks like at the moment. However! All the base functionality is present in this clone!
+Welcome to The Machine! This website was built as the Final Project for The Odin Project's Ruby on Rails curriculum! The basice premise behind this website was to make a lightweight Facebook Clone, and the overall styling is not representative of current Facebook styling. I deleted my account years ago and am not familiar with what the site as a whole looks like at the moment. However! All the base functionality is present in this clone!
 
 Users can first and foremost make a user profile, which is authenticated via Devise, and upon creation of that profile a Dashboard is also created and associated with that user. Once inside the site, users can make either text or image posts - Posts are displayed both on a user's individual page, along with a feed of the current user's posts plus the posts of all their friends (in order of newest first) - the latter being displayed on the user's Dashboard. Image hosting is provided through AWS.
 
