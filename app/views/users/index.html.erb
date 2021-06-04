@@ -28,7 +28,7 @@
 
   <div class="ui grid four wide column">
     <h2 class="ui center aligned header">Potential Friends</h2>
-    <%= current_user.recommendations.each do |person| %>
+    <% current_user.recommendations.each do |person| %>
       <div class="ui centered card">
         <div class="image">
           <%= image_tag person.profile.profile_pic %>
