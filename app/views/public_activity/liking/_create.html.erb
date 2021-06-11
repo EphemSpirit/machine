@@ -1,4 +1,17 @@
-<li>
-  <%= link_to activity.trackable.liker.name, user_path(activity.trackable.liker) %> liked <%= "#{activity.trackable.liked_post.author.name}" %>'s
-  <%= link_to "post", activity.trackable.liked_post %>
-</li>
+<% if activity.trackable.present? %>
+  <div class="ui feed">
+    <div class="label activity-label">
+      <i class="thumbs up icon"></i>
+      <%= link_to activity.trackable.liker.name, user_path(activity.trackable.liker) %> liked <%= "#{activity.trackable.liked_post.author.name}" %>'s
+      <%= link_to "post", activity.trackable.liked_post %>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+<!-- <li>
+
+</li> -->

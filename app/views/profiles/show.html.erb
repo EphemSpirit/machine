@@ -12,7 +12,7 @@
         <%= render 'shared/posts_form' %>
       <% end %>
     </div>
-    <div class="three wide column">
+    <div class="three wide column activities">
       <strong><span class="activity-header">Activity Feed</span></strong>
       <%= render_activities(@activities) %>
     </div>
@@ -23,7 +23,9 @@
     </div>
     <div class="ten wide centered column">
       <h2 class="ui center aligned header">Your Feed</h2>
-      <%= render 'shared/feed', profile: @profile %>
+      <div class="ui divided items">
+        <%= render 'shared/feed', profile: @profile %>
+      </div>
     </div>
     <div class="three wide column">
     </div>

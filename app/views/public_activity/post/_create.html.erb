@@ -1,3 +1,8 @@
-<li>
-  <%= link_to activity.trackable.author.name, user_path(activity.trackable.author) %> made a <%= link_to "post", activity.trackable %>!
-</li>
+<% if activity.trackable.present? %>
+  <div class="ui feed">
+    <div class="label activity-label">
+      <i class="file alternate outline icon"></i>
+      <%= link_to activity.trackable.author.name, user_path(activity.trackable.author) %> made a <%= link_to "post", activity.trackable %>!
+    </div>
+  </div>
+<% end %>

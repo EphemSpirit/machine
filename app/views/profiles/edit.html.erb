@@ -1,23 +1,58 @@
-<h3 class="ui centered header">Edit Your Profile</h3>
+<div class="edit-page">
+  <div class="flex-custom-container edit-account-form">
+    <div class="ui center aligned medium header">Edit Your Profile!</div>
 
-<div class="ui container">
-  <div class="ui centered card">
-    <div class="ui centered grid">
-      <%= simple_form_for(@profile, url: user_profile_path(current_user), method: :put, local: true, html: { class: "ui form" }) do |f| %>
+    <%= simple_form_for(@profile, url: user_profile_path(current_user), method: :put, local: true, html: { class: "ui form" }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="field">
         <% if current_user.profile.profile_pic.attached? %>
-          <%= image_tag current_user.profile.show_image %>
+          <%= image_tag current_user.profile.show_image, class: "ui centered image" %>
         <% end %>
-        <div class="field profile-edit edit-pic">
-          <%= f.input :profile_pic, as: :file, required: true %>
+        <div class="field">
+          <%= f.label :profile_pic, "Profile Picture" %>
+          <div class="ui input">
+            <%= f.input :profile_pic, as: :file, label: false %>
+          </div>
         </div>
-        <div class="field profile-edit">
-          <%= f.input :bio, as: :text %>
+        <div class="field">
+          <%= f.label :bio %>
+          <div class="input">
+            <%= f.text_area :bio, placeholder: "Write a short bio!" %>
+          </div>
         </div>
-        <div class="field profile-edit">
-          <%= f.input :birthday, as: :date, class: "ui fluid dropdown" %>
+        <div class="field">
+          <%= f.label :birthday %>
+          <div class="input">
+            <%= f.input :birthday, as: :date, label: false, html5: true %>
+          </div>
         </div>
-        <%= f.button :submit, "Save Changes", class: "ui positive button" %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
+
+
+<!-- <h3 class="ui centered header">Edit Your Profile</h3> -->
+
+<!-- <div class="ui container">
+  <div class="ui centered card">
+    <div class="ui centered grid">
+      <%#= simple_form_for(@profile, url: user_profile_path(current_user), method: :put, local: true, html: { class: "ui form" }) do |f| %>
+        <#% if current_user.profile.profile_pic.attached? %>
+          <%#= image_tag current_user.profile.show_image %>
+        <#% end %>
+        <div class="field profile-edit edit-pic">
+          <%#= f.input :profile_pic, as: :file, required: true %>
+        </div>
+        <div class="field profile-edit">
+          <%#= f.input :bio, as: :text %>
+        </div>
+        <div class="field profile-edit">
+          <%#= f.input :birthday, as: :date, class: "ui fluid dropdown" %>
+        </div>
+        <%#= f.button :submit, "Save Changes", class: "ui positive button" %>
+      <#% end %>
+    </div>
+  </div>
+</div> -->

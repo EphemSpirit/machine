@@ -1,35 +1,32 @@
-<h2 class="ui centered header">Welcome!</h2>
-<h4 class="ui centered header">The Machine is the best place to manufacture friendships!</h4>
-<h5 class="ui centered header">Sign Up Today!</h5>
+<div class="main-page">
+  <div class="flex-custom-container sign-in-form">
+    <h4 class="ui center aligned medium header">Welcome Back! We're Glad To See You</h4>
 
-<div class="ui container">
-  <div class="ui centered card">
-    <div class="ui centered grid">
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form" }) do |f| %>
-        <div class="field sign-in">
-          <%= f.input :email,
-                      required: false,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" } %>
+    <div class="ui placeholder segment" style="width:50%;">
+      <div class="ui two column very relaxed stackable grid">
+        <div class="column">
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form"}) do |f| %>
+            <div class="field">
+              <%= f.label :email, "Personal Email" %>
+              <div class="ui input">
+                <%= f.email_field :email, placeholder: "email@example.com" %>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :password, "Password" %>
+              <div class="ui input">
+                <%= f.password_field :password %>
+              </div>
+            </div>
+          <%= f.submit "Login", class: "ui blue submit button" %>
+          <% end %>
         </div>
-        <div class="field sign-in">
-          <%= f.input :password,
-                      required: false,
-                      input_html: { autocomplete: "current-password" } %>
+        <div class="middle aligned column">
+          <%= link_to "Sign Up", new_user_registration_path, class: "ui big blue button" %>
         </div>
-        <div class="field">
-          <div type="checkbox" tabindex="0" class="hidden">
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Log in", class: "positive ui button" %>
-        </div>
-      <% end %>
-      <div class="four wide centered row">
-        <%= link_to "No Account? Sign Up!", new_user_registration_path, class: "devise-link" %>
-        <%= link_to "Forgot your password?", edit_user_password_path, class: "devise-link" %>
+      </div>
+      <div class="ui vertical divider">
+        Or
       </div>
     </div>
   </div>

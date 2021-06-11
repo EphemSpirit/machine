@@ -5,18 +5,14 @@
   <% end %>
   <div class="content">
     <div class="header">
-      <%= current_user.name %>
+      <%= link_to "#{current_user.name}", user_profile_path(current_user) %>
     </div>
     <%= current_user.profile.bio %>
   </div>
   <div class="extra content">
     <div class="ui two buttons">
-      <div class="ui basic green button">
-        <%= link_to "My Posts", user_path(current_user) %>
-      </div>
-      <div class="ui basic green button">
-        <%= link_to "Friend Requests", user_requests_path(current_user.id) %>
-      </div>
+      <%= link_to "My Posts", user_path(current_user), class: "ui green button" %>
+      <%= link_to "Friend Requests", user_requests_path(current_user.id), class: "ui blue button" %>
     </div>
   </div>
 </div>

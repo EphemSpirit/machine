@@ -1,5 +1,5 @@
-<div class="ui huge menu">
-  <%= link_to "The Machine", root_path, class: "active item" %>
+<div class="ui huge menu title-menu">
+  <div class="active item">The Machine</div>
   <div class="right menu">
     <% if !user_signed_in? %>
       <%= link_to "Sign In", new_user_session_path, class: "item right floated" %>

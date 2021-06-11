@@ -1,4 +1,16 @@
-<li>
-  <%= link_to activity.trackable.commenter.name, user_path(activity.trackable.commenter) %> commented on <%= "#{activity.trackable.commented_post.author.name}" %>'s
-  <%= link_to "post", activity.trackable.commented_post %>
-</li>
+<% if activity.trackable.present? %>
+  <div class="ui feed">
+    <div class="label activity-label">
+      <i class="comment alternate icon"></i>
+      <%= link_to activity.trackable.commenter.name, user_path(activity.trackable.commenter) %> commented on <%= "#{activity.trackable.commented_post.author.name}" %>'s
+      <%= link_to "post", activity.trackable.commented_post %>
+    </div>
+  </div>
+<% end %>
+
+
+
+<!-- <li>
+  <%#= link_to activity.trackable.commenter.name, user_path(activity.trackable.commenter) %> commented on <%= "#{activity.trackable.commented_post.author.name}" %>'s
+  <%#= link_to "post", activity.trackable.commented_post %>
+</li> -->

@@ -1,9 +1,9 @@
 <% profile.owner.feed_posts.each do |post| %>
   <div class="ui segment">
-    <div class="header">
-      <%= post.author.name %> wrote:
+    <div class="ui header">
+      <%= post.author.name %>
     </div>
-    <div class="content">
+    <div class="content post-content">
       <%= post.body %>
     </div>
   <% if post.post_img.attached? %>
@@ -11,21 +11,27 @@
       <%= image_tag post.display_post_image %>
     </div>
   <% end %>
-  <%= link_to "Comment", new_post_comment_path(post.id), class: "positive ui button" %>
+  <%= link_to new_post_comment_path(post.id) do %>
+    <i class="comment icon"></i>
+  <% end %>
   <% if post.has_liked?(current_user) %>
-    <button class="ui button"><%= "Likes (#{post.num_likes})" %></button>
+    <i class="thumbs up icon"></i>
   <% else %>
-    <%= button_to "Like (#{post.num_likes})", post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), class: "positive ui button" %>
+    <%= button_to post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), class: "like-button" do %>
+      <i class="thumbs up outline icon"></i>
+    <% end %>
   <% end %>
   <% if post.comments.any? %>
     <hr />
     <h5 class="ui header">Comments</h5>
     <% post.comments.each do |comment| %>
-      <div class="header">
-        <%= comment.commenter.name %> says:
-      </div>
-      <div class="content">
-        <%= comment.body %>
+      <div class="ui segment">
+        <div class="ui header">
+          <%= comment.commenter.name %> says:
+        </div>
+        <div class="content">
+          <%= comment.body %>
+        </div>
       </div>
     <% end %>
   <% end %>

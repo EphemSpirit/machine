@@ -1,48 +1,51 @@
-<h2 class="ui centered header">Welcome!</h2>
-<h4 class="ui centered header">The Machine is the best place to manufacture friendships!</h4>
-<h5 class="ui centered header">Sign Up Today!</h5>
-
-
-<div class="ui container">
-  <div class="ui centered card">
-    <div class="ui centered grid">
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" }) do |f| %>
-        <%= f.error_notification %>
-
-        <div class="field sign-up">
-          <%= f.input :name,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" }%>
-        </div>
-        <div class="field sign-up">
-          <%= f.input :username,
-                      required: true,
-                      input_html: { autocomplete: "email" }%>
-        </div>
-        <div class="field sign-up">
-          <%= f.input :email,
-                      required: true,
-                      input_html: { autocomplete: "email" }%>
-        </div>
-        <div class="field sign-up">
-          <%= f.input :password,
-                      required: true,
-                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-        <div class="field sign-up">
-          <%= f.input :password_confirmation,
-                      required: true,
-                      input_html: { autocomplete: "new-password" } %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: "positive ui button" %>
-        </div>
-
-         <%= link_to "Already have an account? Sign In!", new_user_session_path %>
-      <% end %>
+<div class="main-page">
+  <div class="flex-custom-container sign-up-form">
+    <div class="ui center aligned medium header">
+      Making an Account is Easy as 1, 2, 3!
     </div>
+    <div class="ui center aligned small header">
+      Just fill out the details below to start building connections!
+    </div>
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui very relaxed form"}) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="field">
+        <%= f.label :name, "Your Name:" %>
+        <div class="ui input">
+          <%= f.text_field :name, placeholder: "Jax Smith" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :username, "What Username Would You Like?" %>
+        <div class="ui input">
+          <%= f.text_field :username, placeholder: "user01" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :email, "Email:" %>
+        <div class="ui input">
+          <%= f.email_field :email, placeholder: "email@example.com" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "Choose Your Password:" %>
+        <div class="ui input">
+          <%= f.password_field :password %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "One More Time, For Those in the Back:" %>
+        <div class="ui input">
+          <%= f.password_field :password_confirmation %>
+        </div>
+      </div>
+
+      <%= f.submit "Create Account", class: "ui blue submit button" %>
+    <% end %>
   </div>
 </div>
