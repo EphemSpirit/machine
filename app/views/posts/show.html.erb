@@ -3,26 +3,35 @@
 <div class="ui centered grid">
   <div class="ui eight wide column">
     <div class="ui centered segment">
-      <div class="header">
-        <%= @post.author.name %> posted:
-      </div>
-      <div class="content">
-        <%= @post.post_img.attached? ? image_tag(@post.display_post_image) : nil %>
-        <hr />
-        <%= @post.body %>
-      </div>
-    </div>
-    <div class="ui centered segment">
-      <strong>Comments:</strong>
-      <div class="content">
-        <% @comments.each do |comment| %>
-          <div class="content">
-            <i><%= comment.commenter.name %></i>:
-            <%= comment.body %>
-          </div>
+      <div class="ui item">
+        <div class="ui header">
+          <%= @post.author.name %> posted:
+        </div>
+        <div class="content">
+          <%= @post.post_img.attached? ? image_tag(@post.display_post_image) : nil %>
           <hr />
-        <% end %>
+          <%= @post.body %>
+        </div>
       </div>
+      <%= render 'shared/media_buttons', post: @post %>
     </div>
+    <% if @post.comments.size > 0 %>
+      <div class="ui centered header">Comments</div>
+      <div class="ui centered segment">
+        <div class="ui items">
+          <% @comments.each do |comment| %>
+            <div class="ui segment">
+              <div class="ui header">
+                <%= comment.commenter.name %>
+              </div>
+              <div class="content">
+                <%= comment.body %>
+              </div>
+            </div>
+            <hr />
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

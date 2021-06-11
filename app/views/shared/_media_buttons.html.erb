@@ -1,0 +1,10 @@
+<%= link_to new_post_comment_path(post.id) do %>
+  <i class="comment icon"></i>
+<% end %>
+<% if post.has_liked?(current_user) %>
+  <i class="thumbs up icon"></i>
+<% else %>
+  <%= button_to post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), class: "like-button" do %>
+    <i class="thumbs up outline icon"></i>
+  <% end %>
+<% end %>

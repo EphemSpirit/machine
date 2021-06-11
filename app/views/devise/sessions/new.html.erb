@@ -5,7 +5,7 @@
     <div class="ui placeholder segment" style="width:50%;">
       <div class="ui two column very relaxed stackable grid">
         <div class="column">
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form"}) do |f| %>
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form", style: "text-align: center;" }) do |f| %>
             <div class="field">
               <%= f.label :email, "Personal Email" %>
               <div class="ui input">
@@ -19,9 +19,11 @@
               </div>
             </div>
           <%= f.submit "Login", class: "ui blue submit button" %>
+          <%= link_to "I forgot my password", new_user_password_path, class: "devise-link" %>
           <% end %>
         </div>
         <div class="middle aligned column">
+          <div class="ui centered header">Make a New Account Today!</div>
           <%= link_to "Sign Up", new_user_registration_path, class: "ui big blue button" %>
         </div>
       </div>

@@ -23,8 +23,10 @@
           <br>
           <small><%= "Posted: #{distance_of_time_in_words(Time.now, post.created_at)} ago" %></small>
         </div>
-        <%= button_to post_path(post.id), method: :delete, data: { confirm: "Are You Sure You Want to Delete It?" }, class: "like-button" do %>
-          <i class="trash alternate icon"></i>
+        <% if @user == current_user %>
+          <%= button_to post_path(post.id), method: :delete, data: { confirm: "Are You Sure You Want to Delete It?" }, class: "like-button" do %>
+            <i class="trash alternate icon"></i>
+          <% end %>
         <% end %>
       </div>
     <% end %>

@@ -4,23 +4,14 @@
       <%= post.author.name %>
     </div>
     <div class="content post-content">
-      <%= post.body %>
+      <p><%= post.body %></p>
     </div>
   <% if post.post_img.attached? %>
     <div class="image">
       <%= image_tag post.display_post_image %>
     </div>
   <% end %>
-  <%= link_to new_post_comment_path(post.id) do %>
-    <i class="comment icon"></i>
-  <% end %>
-  <% if post.has_liked?(current_user) %>
-    <i class="thumbs up icon"></i>
-  <% else %>
-    <%= button_to post_likings_path(post_id: post.id, liking: { liker_id: current_user.id, liked_post_id: post.id }), class: "like-button" do %>
-      <i class="thumbs up outline icon"></i>
-    <% end %>
-  <% end %>
+  <%= render 'shared/media_buttons', post: post %>
   <% if post.comments.any? %>
     <hr />
     <h5 class="ui header">Comments</h5>
@@ -30,7 +21,7 @@
           <%= comment.commenter.name %> says:
         </div>
         <div class="content">
-          <%= comment.body %>
+          <p><%= comment.body %></p>
         </div>
       </div>
     <% end %>

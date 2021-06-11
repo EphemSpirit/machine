@@ -1,26 +1,31 @@
 <div class="ui internally celled grid">
-  <div class="ui grid four wide column">
+  <div class="ui grid four wide column", style="margin-left:10px;">
     <%= render 'shared/current_user_info' %>
   </div>
 
   <div class="ui grid eight wide column">
     <h2 class="ui center aligned header">All Users</h2>
-    <% @users.each do |user| %>
-      <div class="ui centered card">
-        <div class="image">
-          <%= image_tag user.profile.profile_pic %>
-        </div>
-        <div class="content">
-          <%= link_to user.name, user_path(user), class: "header" %>
-          <div class="meta">
-            <span class="date"><%= user.email %></span>
+    <div class="ui items">
+      <% @users.each do |user| %>
+        <div class="ui centered item">
+          <div class="image">
+            <%= image_tag user.profile.profile_pic if user.profile.profile_pic.attached? %>
           </div>
-          <div class="description">
-            <%= user.profile.bio %>
+          <div class="content">
+            <%= link_to user.name, user_path(user), class: "header" %>
+            <div class="meta">
+              <span class="date"><%= user.email %></span>
+            </div>
+            <div class="description">
+              <%= user.profile.bio %>
+            </div>
+            <div class="extra">
+              <%= link_to "View Posts", user_path(user), class: "ui green button" %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <div class="paginate">
       <%= will_paginate @users %>
     </div>
@@ -28,18 +33,21 @@
 
   <div class="ui grid four wide column">
     <h2 class="ui center aligned header">Potential Friends</h2>
-    <% current_user.recommendations.each do |person| %>
-      <div class="ui centered card">
-        <div class="image">
-          <%= image_tag person.profile.profile_pic %>
-        </div>
-        <div class="content">
-          <%= link_to person.name, class: "header" %>
-          <div class="description">
-            <%= person.profile.bio %>
+    <div class="ui items">
+      <% current_user.recommendations.each do |person| %>
+        <div class="ui centered item">
+          <div class="image">
+            <%= image_tag person.profile.profile_pic %>
           </div>
+          <div class="content maybe-friends">
+            <%= link_to person.name, class: "header" %>
+            <div class="description">
+              <%= person.profile.bio %>
+            </div>
+          </div>
+
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

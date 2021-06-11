@@ -10,7 +10,17 @@ body {
   height: 100%;
 }
 
+p {
+  font-family: 'Noto Sans';
+  padding-bottom: 10px;
+}
+
 /* LINKS */
+
+.maybe-friends > a {
+  color: white;
+  text-decoration: underline;
+}
 
 .activity-label > a {
   color: white;
@@ -71,6 +81,18 @@ body {
   padding-bottom: 20px;
 }
 
+.ui.items.friend-item {
+  background-color: #f8f8ff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.friend-control-btn { width: 50%; }
+
+// .profile-show { margin-left: 10px; }
+
+.extra.content { text-align: center; }
+
 .sign-in, .sign-up, .profile-edit {
   padding-left: 20px;
   padding-right: 20px;
@@ -109,6 +131,10 @@ body {
 .paginate,
 .requests-index {
   text-align: center;
+}
+
+.pagination > a {
+  color: white;
 }
 
 .button_to {

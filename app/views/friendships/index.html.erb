@@ -7,8 +7,8 @@
 
   <div class="ui eight wide centered column">
     <% @friendships.each do |friendship| %>
-      <div class="ui cards">
-        <div class="card">
+      <div class="ui items friend-item">
+        <div class="item">
           <div class="image">
             <% if is_friender?(friendship, current_user) %>
               <%= image_tag friendship.friendee.profile.profile_pic %>
@@ -24,13 +24,20 @@
                 <%= friendship.friender.name %>
               <% end %>
             </div>
-          </div>
-          <div class="extra content">
-            <div class="ui two buttons">
-              <%= link_to "View Their Posts", user_path(is_friendee?(friendship, current_user) ? friendship.friender : friendship.friendee), class: "ui basic green button" %>
-              <%= link_to "Delete Friend", user_friendship_path(current_user.id, is_friendee?(friendship, current_user) ? friendship.friender.id : friendship.friendee.id),
-                                           method: :delete, data: { confirm: "Are You Sure?" }, class: "ui basic red button" %>
+            <div class="description">
+              <% if is_friender?(friendship, current_user) %>
+                <p><%= friendship.friendee.profile.bio %></p>
+              <% else %>
+                <p><%= friendship.friender.profile.bio %></p>
+              <% end %>
             </div>
+            <div class="extra friend-control-btn">
+              <div class="ui two vertical buttons">
+                <%= link_to "View Their Posts", user_path(is_friendee?(friendship, current_user) ? friendship.friender : friendship.friendee), class: "ui basic green button" %>
+                <%= link_to "Delete Friend", user_friendship_path(current_user.id, is_friendee?(friendship, current_user) ? friendship.friender.id : friendship.friendee.id),
+                                             method: :delete, data: { confirm: "Are You Sure?" }, class: "ui basic red button" %>
+              </div>
+          </div>
           </div>
         </div>
       </div>
