@@ -6,6 +6,11 @@
       <%= link_to "Sign Up", new_user_registration_path, class: "item right floated" %>
     <% else %>
       <div class="ui right item">
+        <div class="ui search">
+          <%= render 'shared/search_form' %>
+        </div>
+      </div>
+      <div class="ui right item">
         <%= link_to "My Profile", user_profile_path(current_user) %>
       </div>
       <div class="ui right item">

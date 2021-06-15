@@ -1,0 +1,8 @@
+<%= form_with(url: search_url, scope: :search, method: :GET) do |f| %>
+  <div class="ui icon input">
+    <%= f.text_field :search_name, placeholder: "Search Users...", html: { class: "prompt" } %>
+    <i class="search icon">
+      <%= f.submit %>
+    </i>
+  </div>
+<% end %>

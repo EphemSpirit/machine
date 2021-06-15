@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def search
+    @results = User.where("name LIKE ?", "%#{params[:search][:search_name]}%")
+  end
+
   private
 
     def be_not_logged_in

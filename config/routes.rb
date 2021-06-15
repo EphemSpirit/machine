@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/users' => 'users#index', :as => :user_root
   devise_for :users
 
+  get '/search', to: 'users#search'
+
   devise_scope :user do
     root 'devise/sessions#new'
   end
