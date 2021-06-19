@@ -26,3 +26,12 @@ $(document).on('turbolinks:load', function() {
     $(this).closest('.message').transition('fade');
   });
 })
+
+submitSearch = function() {
+  $('.search-box').on('keydown', function(e) {
+    if (e.keycode == 13) {
+      $('.search-btn').click;
+      e.target.value = ""
+    }
+  });
+}
