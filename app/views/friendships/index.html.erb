@@ -6,7 +6,7 @@
   </div>
 
   <div class="ui eight wide centered column">
-    <% @friends.each do |friendship| %>
+    <% @friendships.each do |friendship| %>
       <div class="ui items friend-item">
         <div class="item">
           <div class="image">
@@ -34,7 +34,7 @@
             <div class="extra friend-control-btn">
               <div class="ui two vertical buttons">
                 <%= link_to "View Their Posts", user_path(is_friendee?(friendship, current_user) ? friendship.friender : friendship.friendee), class: "ui basic green button" %>
-                <%= link_to "Delete Friend", user_friendship_path(current_user.id, is_friendee?(friendship, current_user) ? friendship.friender.id : friendship.friendee.id),
+                <%= link_to "Delete Friend", user_friendship_path(current_user.id, friendship.id),
                                              method: :delete, data: { confirm: "Are You Sure?" }, class: "ui basic red button" %>
               </div>
           </div>
