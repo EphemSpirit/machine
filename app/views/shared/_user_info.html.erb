@@ -11,10 +11,10 @@
   <div class="extra content">
     <div class="ui vertical buttons">
       <div class="ui basic green button">
-        <%= link_to "Friends: ", user_friendships_path(@user) %><%= "#{total_friends(current_user)} total" %>
+        <%= link_to "Friends: ", user_friendships_path(@user) %><%= "#{total_friends(@user)} total" %>
       </div>
       <div class="ui basic green button">
-        <%= link_to "Send Friend Request", user_requests_path(user_id: @user.id, request: { sender_id: current_user.id, reciever_id: @user.id }) %>
+        <%=  button_to "Send Friend Request", user_requests_path(user_id: @user.id, request: { sender_id: current_user.id, receiver_id: @user.id }) %>
       </div>
     </div>
   </div>

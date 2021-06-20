@@ -2,7 +2,8 @@ class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @friendships = Friendship.where(friender_id: current_user.id).or(Friendship.where(friendee_id: current_user.id))
+    @user = User.find(params[:user_id])
+    @friendships = Friendship.where(friender_id: @user.id).or(Friendship.where(friendee_id: @user.id))
   end
 
   def new
