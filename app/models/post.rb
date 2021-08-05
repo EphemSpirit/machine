@@ -13,6 +13,9 @@ class Post < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
+  #hotwire
+  broadcasts_to ->(posts) { :posts }
+
   def display_post_image
     post_img.variant(resize_to_limit: [200, 200])
   end

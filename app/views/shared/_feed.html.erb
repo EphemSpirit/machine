@@ -1,3 +1,5 @@
+<%= turbo_stream_from :posts %>
+
 <% profile.owner.feed_posts.each do |post| %>
   <div class="ui segment">
     <div class="ui header">
@@ -26,6 +28,5 @@
       </div>
     <% end %>
   <% end %>
-
   </div>
 <% end %>
