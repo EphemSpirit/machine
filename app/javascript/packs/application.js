@@ -4,11 +4,10 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+import "@hotwired/turbo-rails"
 require("@rails/activestorage").start()
 require("channels")
 // require("@rails/ujs").start()
-require("turbolinks").start()
 require("semantic-ui-sass")
 
 // require("stylesheets/application.scss")
@@ -35,3 +34,5 @@ submitSearch = function() {
     }
   });
 }
+
+import "controllers"
